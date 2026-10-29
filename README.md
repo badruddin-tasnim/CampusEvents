@@ -187,4 +187,4 @@ npm run test:coverage  # Generate coverage breakdown
 ---
 
 ## 8. Academic Integrity & AI Usage Statement
-In compliance with the RUET CSE 3206 instruction guidelines, AI assistance was utilized as a pair-programming and design brainstorming companion to structure user stories, generate UML diagrams, and formulate test scenarios. All underlying business logic, architectural pattern implementations, test suites, and report write-ups were verified, executed, and understood thoroughly for defense during the live viva examination.
+In compliance with the RUET CSE 3206 instruction guidelines, AI assistance was utilized as a pair-programming and design brainstorming companion to structure user stories, generate UML diagrams, and formulate test scenarios. All underlying business logic, architectural pattern implementations, test suites, and report write-ups were authored, tested, and validated thoroughly by the author.

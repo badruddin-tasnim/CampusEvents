@@ -171,7 +171,7 @@ export default function AuthModal({
               </div>
             </div>
 
-            {/* Helper to fill credentials for teacher/viva presentation */}
+            {/* Helper to fill credentials for evaluation demonstration */}
             <button
               type="button"
               onClick={fillAdminCredentials}
