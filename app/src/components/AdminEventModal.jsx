@@ -138,7 +138,7 @@ export default function AdminEventModal({
           {/* Category selection */}
           <div>
             <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-              Event Category (Factory Pattern Variant)
+              Event Category
             </label>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
               {EventFactory.getAvailableCategories().filter(c => c !== 'General').map((cat) => (

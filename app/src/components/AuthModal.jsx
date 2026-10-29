@@ -135,7 +135,7 @@ export default function AuthModal({
             </button>
 
             <div className="pt-2 text-[11px] text-center text-slate-400">
-              Authorized via Firebase Authentication Service (Singleton Pattern)
+              Authorized via Firebase Authentication Service
             </div>
           </div>
         ) : (
