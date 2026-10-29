@@ -1,9 +1,4 @@
 # CampusEvents — RUET Campus Event Management System
-> **Course:** CSE 3206 — Software Engineering Sessional (22 Series)  
-> **Institution:** Department of Computer Science & Engineering, Rajshahi University of Engineering & Technology (RUET)  
-> **Course Outcomes Covered:** CO4, PO12 (Self-Directed Lifelong Learning, Software Engineering Principles)
-
----
 
 ## 1. Project Overview & Motivation
 CampusEvents is a modern, responsive campus event management web application engineered for Rajshahi University of Engineering & Technology. It centralizes discovery, seat reservation, ticket generation, and administration for academic hackathons, technical workshops, sports tournaments, and cultural fests.
@@ -167,7 +162,7 @@ npm run test:coverage  # Generate coverage breakdown
 1. **Clone the repository:**
    ```bash
    git clone <YOUR_GITHUB_REPO_URL>
-   cd lab6v2/app
+   cd your_work_directory/app
    ```
 2. **Install dependencies:**
    ```bash
