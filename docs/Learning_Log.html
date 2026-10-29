@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Learning Log - CampusSync</title>
+  <style>
+    @page { size: A4; margin: 18mm 20mm; }
+    body { font-family: 'Times New Roman', Times, serif; font-size: 11pt; line-height: 1.35; color: #111; text-align: justify; }
+    h1 { font-size: 14pt; color: #0f172a; border-bottom: 1.5px solid #0f172a; padding-bottom: 3px; margin-top: 18px; margin-bottom: 8px; }
+    h2 { font-size: 12pt; color: #1e293b; margin-top: 12px; margin-bottom: 6px; }
+    p { margin-top: 4px; margin-bottom: 6px; }
+    ul { margin-top: 4px; margin-bottom: 6px; padding-left: 20px; }
+    li { margin-bottom: 3px; }
+    .header-box { text-align: center; margin-bottom: 16px; }
+    .header-box h2 { margin: 2px 0; font-size: 15pt; text-transform: uppercase; }
+    .header-box h3 { margin: 2px 0; font-size: 12pt; font-weight: normal; }
+    .header-box .doc-title { font-size: 13pt; font-weight: bold; margin-top: 10px; color: #1e3a8a; }
+    table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 9.5pt; page-break-inside: avoid; }
+    th, td { border: 1px solid #cbd5e1; padding: 5px 8px; text-align: left; vertical-align: top; }
+    th { background-color: #f1f5f9; font-weight: bold; color: #0f172a; }
+    tr:nth-child(even) td { background-color: #f8fafc; }
+  </style>
+</head>
+<body>
+
+  <div class="header-box">
+    <h2>Rajshahi University of Engineering & Technology</h2>
+    <h3>Department of Computer Science & Engineering</h3>
+    <h3>CSE 3206: Software Engineering Sessional (22 Series)</h3>
+    <div class="doc-title">LEARNING LOG: SELF-DIRECTED LIFELONG LEARNING (CO4, PO12)<br>Project: CampusSync — RUET Campus Event Management System</div>
+  </div>
+
+  <table>
+    <tr>
+      <th>Student Name</th>
+      <th>Roll / ID</th>
+      <th>New Tool Studied</th>
+      <th>Academic Series</th>
+    </tr>
+    <tr>
+      <td>Badruddin Tasnim</td>
+      <td>2203001</td>
+      <td>GitHub Projects (Kanban & Automation)</td>
+      <td>22 Series (RUET CSE)</td>
+    </tr>
+  </table>
+
+  <h1>1. Objectives & Overview of Self-Directed Learning</h1>
+  <p>In fulfillment of Course Outcome CO4 and Program Outcome PO12 (Recognizing the need for, and having the preparation and ability to engage in independent and lifelong learning in the broadest context of technological change), this Learning Log documents the self-directed acquisition of modern engineering methodologies outside the core sessional curriculum. Specifically, it chronicles the adoption of GitHub Projects for Agile sprint management, Test-Driven Development (TDD) using Vitest with external dependency mocks, and the practical implementation of GoF Design Patterns.</p>
+
+  <h1>2. Chronological Engineering Log & Sprint Milestones</h1>
+  <table>
+    <tr>
+      <th style="width: 15%;">Date & Sprint</th>
+      <th style="width: 22%;">Focus Area / Task</th>
+      <th style="width: 38%;">Self-Directed Activity & Tool Application</th>
+      <th style="width: 25%;">Key Engineering Takeaway</th>
+    </tr>
+    <tr>
+      <td><strong>Day 1-3</strong><br>(Sprint 0)</td>
+      <td>Tool Selection & Environment Setup</td>
+      <td>Researched project management alternatives beyond the syllabus. Compared Jira vs. Trello vs. GitHub Projects. Configured GitHub Projects beta with custom Kanban status fields (Backlog, Ready, In Progress, In Review, Done).</td>
+      <td>Native Git integration drastically reduces cognitive friction compared to standalone boards like Trello.</td>
+    </tr>
+    <tr>
+      <td><strong>Day 4-6</strong><br>(Sprint 1)</td>
+      <td>Requirements & User Stories</td>
+      <td>Drafted formal functional requirements for 5 modules. Converted user stories into GitHub Issues with Acceptance Criteria (Given-When-Then). Linked issues to the GitHub Project board.</td>
+      <td>Breaking monolithic requirements into verifiable user stories prevents scope creep early in the lifecycle.</td>
+    </tr>
+    <tr>
+      <td><strong>Day 7-9</strong><br>(Sprint 1)</td>
+      <td>Design Patterns Architecture</td>
+      <td>Studied GoF creational and behavioral patterns. Implemented Singleton pattern for Firebase initialization, Factory pattern for polymorphic campus events, and Observer pattern for event bus notifications.</td>
+      <td>Design patterns are not academic abstractions—they tangibly protect codebases against breaking modifications.</td>
+    </tr>
+    <tr>
+      <td><strong>Day 10-12</strong><br>(Sprint 2)</td>
+      <td>TDD & Mocking Strategy</td>
+      <td>Transitioned away from cumbersome legacy testing setups. Self-learned Vitest and v8 coverage. Implemented isolated mocks for Firebase Firestore methods (<code>getDocs</code>, <code>setDoc</code>, <code>updateDoc</code>).</td>
+      <td>Mocking external cloud dependencies allows continuous integration testing without internet connectivity or cloud cost.</td>
+    </tr>
+    <tr>
+      <td><strong>Day 13-14</strong><br>(Sprint 2)</td>
+      <td>Git Workflow & Merge Conflict</td>
+      <td>Enforced strict feature-branch naming. Created PR #1 and PR #2 with simulated peer reviews. Induced a deliberate merge conflict on validation logic and resolved it cleanly.</td>
+      <td>Merge conflicts reflect collaborative divergence; resolving them requires synthesizing logic rather than blindly picking one branch.</td>
+    </tr>
+    <tr>
+      <td><strong>Day 15-16</strong><br>(Sprint 3)</td>
+      <td>UI Refinement & Extensibility</td>
+      <td>Constructed responsive UI with Tailwind CSS and Lucide icons. Subscribed UI components to EventBus for real-time seat decrementing and ticket badge updates.</td>
+      <td>The Observer pattern eliminates messy multi-level React prop drilling, yielding modular presentation components.</td>
+    </tr>
+  </table>
+
+  <h1>3. Deep Technical Challenges & Resolution Log</h1>
+  <h2>Challenge 1: Cloud Firestore Network Coupling in Offline Test Suites</h2>
+  <ul>
+    <li><strong>Problem Description:</strong> When executing automated unit tests, test suites attempted real HTTP connections to Firebase Firestore, failing when network latency spiked or during offline campus lab sessions.</li>
+    <li><strong>Root Cause & Resolution:</strong> Learned and applied Vitest module mocking via <code>vi.mock('firebase/firestore')</code>. Intercepted raw SDK queries with in-memory deterministic responses and engineered a dual-mode persistence fallback in <code>EventService</code> utilizing local storage.</li>
+    <li><strong>Engineering Lesson:</strong> Decoupling domain services from persistence implementations is imperative for reproducible testing.</li>
+  </ul>
+
+  <h2>Challenge 2: State Synchronization Across Decoupled Components</h2>
+  <ul>
+    <li><strong>Problem Description:</strong> Upon reserving an event ticket in the details modal, the card seat quota on the home page and the navbar ticket count badge failed to reflect the updated count without manually refreshing the browser.</li>
+    <li><strong>Root Cause & Resolution:</strong> Designed and implemented a centralized, lightweight publish-subscribe <code>EventBus</code> (Observer pattern). Wrapped subscriptions inside React's <code>useEffect</code> hook with dedicated unsubscriber cleanups, allowing components to reactively re-render upon <code>RSVP_CONFIRMED</code> broadcasts.</li>
+    <li><strong>Engineering Lesson:</strong> Behavioral patterns provide clean, scalable event pipelines that preserve component decoupling.</li>
+  </ul>
+
+  <h2>Challenge 3: TDD Edge-Case Failure in Factory Validation</h2>
+  <ul>
+    <li><strong>Problem Description:</strong> During TDD execution of <code>EventFactory.test.js</code>, the test verifying minimum sports team sizes failed unexpectedly when passed <code>teamSize: 0</code>.</li>
+    <li><strong>Root Cause & Resolution:</strong> The constructor used JavaScript's short-circuit fallback: <code>this.teamSize = Number(data.teamSize) || 1</code>. Because <code>0</code> is falsy in JavaScript, the expression coerced valid zero-input to 1, causing validation to pass mistakenly. Corrected the expression to explicit existence checking: <code>data.teamSize !== undefined ? Number(data.teamSize) : 1</code>.</li>
+    <li><strong>Engineering Lesson:</strong> Writing assertions prior to implementation exposes subtle language-level type coercion traps before code enters production.</li>
+  </ul>
+
+  <h1>4. Critical & Honest Evaluation of Learning Resources</h1>
+  <table>
+    <tr>
+      <th style="width: 22%;">Learning Resource</th>
+      <th style="width: 15%;">Category</th>
+      <th style="width: 30%;">Strengths Observed</th>
+      <th style="width: 25%;">Weaknesses & Limitations</th>
+      <th style="width: 8%;">Rating</th>
+    </tr>
+    <tr>
+      <td><strong>Official GitHub Documentation & GitHub Skills</strong></td>
+      <td>Documentation</td>
+      <td>Authoritative, clear step-by-step interactive labs on GitHub Projects automation, project fields, and PR workflows.</td>
+      <td>Lacks end-to-end guidance tailored specifically to small academic project environments.</td>
+      <td>4.5/5.0</td>
+    </tr>
+    <tr>
+      <td><strong>Refactoring.Guru (Design Patterns Guide)</strong></td>
+      <td>Web Educational</td>
+      <td>Exceptional visual analogies, clear problem statements, and explicit trade-off comparisons for GoF patterns.</td>
+      <td>Examples are primarily in classical OOP languages (Java/C++) rather than modern JavaScript ESM idioms.</td>
+      <td>4.8/5.0</td>
+    </tr>
+    <tr>
+      <td><strong>Vitest Official Documentation & Guides</strong></td>
+      <td>Documentation</td>
+      <td>Blazing-fast examples, concise syntax guides, and straightforward mocking tutorials using <code>vi.mock()</code>.</td>
+      <td>Documentation around complex asynchronous Firestore mocks requires prior familiarity with Jest APIs.</td>
+      <td>4.2/5.0</td>
+    </tr>
+    <tr>
+      <td><strong>Interactive AI Coding Assistant (Antigravity)</strong></td>
+      <td>AI Interactive</td>
+      <td>Superb for exploratory brainstorming, drafting Mermaid UML syntax, and identifying subtle logic edge cases.</td>
+      <td>Requires vigilant manual verification and active understanding to ensure code conforms to course requirements.</td>
+      <td>4.7/5.0</td>
+    </tr>
+  </table>
+
+</body>
+</html>
