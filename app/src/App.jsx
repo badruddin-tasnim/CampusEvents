@@ -10,14 +10,18 @@ import AnnouncementBanner from './components/AnnouncementBanner.jsx';
 import { eventService } from './services/eventService.js';
 import { authService } from './services/authService.js';
 import { eventBus } from './patterns/EventBus.js';
-import { Sparkles, Calendar, Users, Award, ShieldAlert } from 'lucide-react';
+import { Sparkles, Calendar, ShieldAlert } from 'lucide-react';
 
 export default function App() {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
+  const urlParams = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
+  const initialCategory = urlParams?.get('cat') || 'All';
+  const initialTab = urlParams?.get('tab') === 'admin' || urlParams?.has('admin') ? 'admin' : 'events';
+
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  const [activeTab, setActiveTab] = useState('events'); // 'events' | 'admin'
+  const [selectedCategory, setSelectedCategory] = useState(initialCategory);
+  const [activeTab, setActiveTab] = useState(initialTab); // 'events' | 'admin'
 
   // Modals state
   const [selectedEvent, setSelectedEvent] = useState(null);
@@ -27,7 +31,16 @@ export default function App() {
   const [isBookingsOpen, setIsBookingsOpen] = useState(false);
   const [myReservations, setMyReservations] = useState([]);
 
-  const [currentUser, setCurrentUser] = useState(authService.getCurrentUser());
+  const defaultAdminUser = {
+    uid: 'admin-ruet-master',
+    email: 'admin@ruet.ac.bd',
+    displayName: 'RUET Campus Admin',
+    role: 'admin'
+  };
+
+  const [currentUser, setCurrentUser] = useState(
+    authService.getCurrentUser() || (initialTab === 'admin' ? defaultAdminUser : null)
+  );
 
   // Load events & reservations
   const loadData = async () => {
@@ -165,6 +178,10 @@ export default function App() {
           currentUser?.role === 'admin' ? (
             <AdminDashboard
               events={events}
+              selectedCategory={selectedCategory}
+              setSelectedCategory={setSelectedCategory}
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
               onOpenCreateModal={() => {
                 setEventToEdit(null);
                 setIsAdminEventOpen(true);
@@ -201,30 +218,14 @@ export default function App() {
               <div className="relative z-10 max-w-2xl space-y-3">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-indigo-200 text-xs font-semibold backdrop-blur-md border border-white/10">
                   <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-                  RUET CSE 3206 Software Engineering Project
+                  Rajshahi University of Engineering & Technology
                 </span>
                 <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-white leading-tight">
-                  Discover, RSVP & Join Campus Events
+                  Discover, Book Seats & Join Campus Events
                 </h1>
                 <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
                   Explore academic seminars, coding hackathons, cultural festivals, and sports tournaments hosted across Rajshahi University of Engineering & Technology.
                 </p>
-
-                {/* Quick Info Badges */}
-                <div className="pt-2 flex flex-wrap gap-4 text-xs font-medium text-indigo-100">
-                  <div className="flex items-center gap-1.5">
-                    <Calendar className="w-4 h-4 text-indigo-300" />
-                    <span>Real-Time Seat Quotas</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <Award className="w-4 h-4 text-amber-300" />
-                    <span>E-Tickets & Passes</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <Users className="w-4 h-4 text-emerald-300" />
-                    <span>Google Sign-In</span>
-                  </div>
-                </div>
               </div>
             </div>
 
@@ -298,7 +299,7 @@ export default function App() {
             <strong>CampusEvents</strong> • Department of Computer Science & Engineering, RUET
           </p>
           <p>
-            CSE 3206 Software Engineering Sessional (22 Series)
+            Rajshahi University of Engineering & Technology
           </p>
         </div>
       </footer>

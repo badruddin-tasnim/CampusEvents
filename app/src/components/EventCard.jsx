@@ -129,7 +129,7 @@ export default function EventCard({
               onClick={() => onQuickRsvp(event)}
               className="flex-1 px-3 py-2 text-xs font-semibold rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white shadow-xs transition-colors"
             >
-              RSVP Now
+              Book Your Seat
             </button>
           )}
         </div>

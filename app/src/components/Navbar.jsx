@@ -194,7 +194,7 @@ export default function Navbar({
           </div>
 
           <div className="text-xs text-slate-400 font-medium hidden sm:block">
-            CSE 3206: Software Engineering Sessional
+            Rajshahi University of Engineering & Technology
           </div>
         </div>
       </div>

@@ -277,7 +277,7 @@ export default function EventDetailModal({
                 }}
                 className="px-4 py-2 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-xs transition-colors"
               >
-                Sign In to RSVP
+                Sign In to Book Seat
               </button>
             ) : isUserBooked ? (
               <button
@@ -298,7 +298,7 @@ export default function EventDetailModal({
                 onClick={() => onRsvp(event)}
                 className="px-5 py-2 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-xs transition-colors"
               >
-                Confirm Spot (One-Click)
+                Book Your Seat
               </button>
             )}
           </div>

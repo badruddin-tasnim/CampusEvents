@@ -38,7 +38,7 @@ export default function MyBookingsModal({
             <div className="text-center py-12 text-slate-400">
               <Ticket className="w-12 h-12 mx-auto stroke-[1.2] mb-3 text-slate-300" />
               <p className="text-sm font-semibold text-slate-600">No event reservations yet</p>
-              <p className="text-xs text-slate-400 mt-1">Browse the campus feed and click 'RSVP Now' to secure your seat.</p>
+              <p className="text-xs text-slate-400 mt-1">Browse the campus feed and click 'Book Your Seat' to secure your spot.</p>
             </div>
           ) : (
             rsvps.map((rsvp) => (
