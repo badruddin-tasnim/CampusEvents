@@ -1,7 +1,7 @@
 import FirebaseConfigManager from '../patterns/FirebaseSingleton.js';
 import EventFactory from '../patterns/EventFactory.js';
 import { eventBus } from '../patterns/EventBus.js';
-import { INITIAL_EVENTS, INITIAL_ANNOUNCEMENTS } from './mockData.js';
+import { INITIAL_EVENTS, INITIAL_ANNOUNCEMENTS, INITIAL_RESERVATIONS } from './mockData.js';
 import { 
   collection, 
   getDocs, 
@@ -30,8 +30,8 @@ export class EventService {
       if (!localStorage.getItem(STORAGE_KEY_EVENTS)) {
         localStorage.setItem(STORAGE_KEY_EVENTS, JSON.stringify(INITIAL_EVENTS));
       }
-      if (!localStorage.getItem(STORAGE_KEY_RSVPS)) {
-        localStorage.setItem(STORAGE_KEY_RSVPS, JSON.stringify([]));
+      if (!localStorage.getItem(STORAGE_KEY_RSVPS) || JSON.parse(localStorage.getItem(STORAGE_KEY_RSVPS) || '[]').length === 0) {
+        localStorage.setItem(STORAGE_KEY_RSVPS, JSON.stringify(INITIAL_RESERVATIONS));
       }
       if (!localStorage.getItem(STORAGE_KEY_ANNOUNCEMENTS)) {
         localStorage.setItem(STORAGE_KEY_ANNOUNCEMENTS, JSON.stringify(INITIAL_ANNOUNCEMENTS));
@@ -247,6 +247,27 @@ export class EventService {
       return rsvps.filter(r => r.userId === userId);
     }
     return [];
+  }
+
+  /**
+   * Get all attendee reservations across events (Admin view)
+   */
+  async getAllReservations() {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY_RSVPS) || '[]');
+    }
+    return INITIAL_RESERVATIONS;
+  }
+
+  /**
+   * Get attendee reservations for a specific event (Admin view)
+   */
+  async getEventReservations(eventId) {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const rsvps = JSON.parse(localStorage.getItem(STORAGE_KEY_RSVPS) || '[]');
+      return rsvps.filter(r => r.eventId === eventId);
+    }
+    return INITIAL_RESERVATIONS.filter(r => r.eventId === eventId);
   }
 
   /**

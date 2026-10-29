@@ -102,3 +102,76 @@ export const INITIAL_ANNOUNCEMENTS = [
     category: 'Info'
   }
 ];
+
+export const INITIAL_RESERVATIONS = [
+  {
+    id: 'res_sample_1',
+    eventId: 'evt_cse_fest_2026',
+    eventTitle: 'RUET CSE Fest 2026: National Hackathon',
+    eventCategory: 'Academic',
+    eventDate: '2026-11-15',
+    eventTime: '09:00 AM',
+    eventVenue: 'CSE Seminar Hall & Lab 3, RUET',
+    userId: 'ruet_std_2203001',
+    userName: 'Tanvir Ahmed',
+    userEmail: 'tanvir.cse22@ruet.ac.bd',
+    ticketCode: 'CE-FEST-8201',
+    timestamp: '2026-10-27T10:15:00.000Z'
+  },
+  {
+    id: 'res_sample_2',
+    eventId: 'evt_cse_fest_2026',
+    eventTitle: 'RUET CSE Fest 2026: National Hackathon',
+    eventCategory: 'Academic',
+    eventDate: '2026-11-15',
+    eventTime: '09:00 AM',
+    eventVenue: 'CSE Seminar Hall & Lab 3, RUET',
+    userId: 'ruet_std_2203045',
+    userName: 'Nafisa Chowdhury',
+    userEmail: 'nafisa.cse22@ruet.ac.bd',
+    ticketCode: 'CE-FEST-9314',
+    timestamp: '2026-10-27T11:40:00.000Z'
+  },
+  {
+    id: 'res_sample_3',
+    eventId: 'evt_ai_workshop',
+    eventTitle: 'Hands-on Generative AI & LLM Systems Workshop',
+    eventCategory: 'Workshop',
+    eventDate: '2026-11-20',
+    eventTime: '02:30 PM',
+    eventVenue: 'Software Engineering Lab, Academic Building 2',
+    userId: 'ruet_std_2103012',
+    userName: 'Mehedi Hasan',
+    userEmail: 'mehedi.eee21@ruet.ac.bd',
+    ticketCode: 'CE-AI-4720',
+    timestamp: '2026-10-28T09:20:00.000Z'
+  },
+  {
+    id: 'res_sample_4',
+    eventId: 'evt_football_cup',
+    eventTitle: 'Inter-Department Football Tournament 2026',
+    eventCategory: 'Sports',
+    eventDate: '2026-11-25',
+    eventTime: '03:45 PM',
+    eventVenue: 'RUET Central Playground',
+    userId: 'ruet_std_2003088',
+    userName: 'Shakil Anwar',
+    userEmail: 'shakil.me20@ruet.ac.bd',
+    ticketCode: 'CE-SPORTS-1192',
+    timestamp: '2026-10-28T14:05:00.000Z'
+  },
+  {
+    id: 'res_sample_5',
+    eventId: 'evt_cultural_night',
+    eventTitle: 'RUET Autumn Acoustic Night & Drama Fest',
+    eventCategory: 'Cultural',
+    eventDate: '2026-12-02',
+    eventTime: '06:00 PM',
+    eventVenue: 'RUET Central Auditorium',
+    userId: 'ruet_std_2203099',
+    userName: 'Ayesha Siddika',
+    userEmail: 'ayesha.ce22@ruet.ac.bd',
+    ticketCode: 'CE-CULT-6305',
+    timestamp: '2026-10-28T18:30:00.000Z'
+  }
+];
