@@ -6,3 +6,4 @@ coverage/
 .system_generated/
 app/dist/
 app/coverage/
+__pycache__/
