@@ -1,0 +1,134 @@
+classDiagram
+    direction TB
+
+    %% Singleton Pattern
+    class FirebaseConfigManager {
+        -static instance: FirebaseConfigManager
+        -auth: FirebaseAuth
+        -db: Firestore
+        -isMockMode: boolean
+        -constructor()
+        +static getInstance() FirebaseConfigManager
+        +getAuth() FirebaseAuth
+        +getDb() Firestore
+        +isConfigured() boolean
+    }
+
+    %% Factory Pattern
+    class EventFactory {
+        <<Factory>>
+        +static createEvent(type: String, data: Object) CampusEvent
+        +static getAvailableCategories() List~String~
+    }
+
+    %% Core Entity Hierarchy
+    class CampusEvent {
+        <<Abstract>>
+        +id: String
+        +title: String
+        +description: String
+        +category: String
+        +date: String
+        +time: String
+        +venue: String
+        +capacity: int
+        +registeredCount: int
+        +organizer: String
+        +imageUrl: String
+        +tags: List~String~
+        +hasAvailableSeats() boolean
+        +validate() boolean
+        +getEventBadge() String
+    }
+
+    class AcademicEvent {
+        +speaker: String
+        +prerequisites: String
+        +getEventBadge() String
+        +validate() boolean
+    }
+
+    class CulturalEvent {
+        +dressCode: String
+        +performers: List~String~
+        +getEventBadge() String
+        +validate() boolean
+    }
+
+    class SportsEvent {
+        +teamSize: int
+        +rulesDocUrl: String
+        +getEventBadge() String
+        +validate() boolean
+    }
+
+    class WorkshopEvent {
+        +materialsRequired: List~String~
+        +certificateProvided: boolean
+        +getEventBadge() String
+        +validate() boolean
+    }
+
+    CampusEvent <|-- AcademicEvent
+    CampusEvent <|-- CulturalEvent
+    CampusEvent <|-- SportsEvent
+    CampusEvent <|-- WorkshopEvent
+    EventFactory ..> CampusEvent : creates
+
+    %% Observer Pattern
+    class EventBus {
+        <<Observer - Subject>>
+        -static instance: EventBus
+        -listeners: Map~String, List~Function~~
+        +static getInstance() EventBus
+        +subscribe(event: String, callback: Function) Function
+        +publish(event: String, payload: Object) void
+        +clear() void
+    }
+
+    class RSVPReservation {
+        +id: String
+        +eventId: String
+        +userId: String
+        +userEmail: String
+        +userName: String
+        +ticketCode: String
+        +bookingTime: String
+        +status: String
+    }
+
+    class UserProfile {
+        +uid: String
+        +email: String
+        +displayName: String
+        +role: String
+        +isAdmin() boolean
+    }
+
+    %% Service Layer
+    class EventService {
+        -dbAdapter: DatabaseAdapter
+        +getAllEvents() Promise~List~CampusEvent~~
+        +getEventById(id: String) Promise~CampusEvent~
+        +createEvent(eventData: Object) Promise~CampusEvent~
+        +updateEvent(id: String, eventData: Object) Promise~CampusEvent~
+        +deleteEvent(id: String) Promise~boolean~
+        +reserveSpot(eventId: String, user: UserProfile) Promise~RSVPReservation~
+        +cancelReservation(reservationId: String) Promise~boolean~
+        +getUserReservations(userId: String) Promise~List~RSVPReservation~~
+    }
+
+    class AuthService {
+        -authAdapter: AuthAdapter
+        +loginWithGoogle() Promise~UserProfile~
+        +loginAsAdmin(email: String, pass: String) Promise~UserProfile~
+        +logout() Promise~void~
+        +getCurrentUser() UserProfile
+    }
+
+    EventService ..> FirebaseConfigManager : uses
+    EventService ..> EventFactory : uses
+    EventService ..> EventBus : emits events
+    EventService ..> RSVPReservation : manages
+    AuthService ..> FirebaseConfigManager : uses
+    AuthService ..> UserProfile : manages
