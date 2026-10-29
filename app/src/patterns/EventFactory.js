@@ -43,7 +43,7 @@ export class CampusEvent {
   }
 
   validate() {
-    if (!this.title.trim()) return { valid: false, message: 'Event title is required.' };
+    if (!this.title.trim() || this.title.length < 5) return { valid: false, message: 'Title must be at least 5 chars.' };
     if (this.capacity <= 0) return { valid: false, message: 'Capacity must be greater than zero.' };
     if (!this.venue.trim()) return { valid: false, message: 'Venue is required.' };
     return { valid: true };
