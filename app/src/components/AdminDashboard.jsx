@@ -313,18 +313,16 @@ export default function AdminDashboard({
                                   setAdminTab('attendees');
                                 }}
                                 title="View Registered Attendees"
-                                className="px-2 py-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 rounded-lg border border-indigo-200 transition-colors flex items-center gap-1"
+                                className="p-1.5 text-indigo-700 bg-indigo-50 hover:bg-indigo-100 rounded-lg border border-indigo-200 transition-colors"
                               >
-                                <Users className="w-3.5 h-3.5" />
-                                <span className="hidden md:inline">Attendees</span>
+                                <Users className="w-4 h-4" />
                               </button>
                               <button
                                 onClick={() => onOpenEditModal(evt)}
                                 title="Edit Event"
-                                className="px-2 py-1 text-xs font-semibold text-amber-700 bg-amber-50 hover:bg-amber-100 rounded-lg border border-amber-200 transition-colors flex items-center gap-1"
+                                className="p-1.5 text-amber-700 bg-amber-50 hover:bg-amber-100 rounded-lg border border-amber-200 transition-colors"
                               >
-                                <Edit3 className="w-3.5 h-3.5" />
-                                <span className="hidden md:inline">Edit</span>
+                                <Edit3 className="w-4 h-4" />
                               </button>
                               <button
                                 onClick={() => {
@@ -333,10 +331,9 @@ export default function AdminDashboard({
                                   }
                                 }}
                                 title="Delete Event"
-                                className="px-2.5 py-1 text-xs font-bold text-rose-700 bg-rose-50 hover:bg-rose-100 rounded-lg border border-rose-300 transition-colors flex items-center gap-1 shadow-2xs"
+                                className="p-1.5 text-rose-700 bg-rose-50 hover:bg-rose-100 rounded-lg border border-rose-200 transition-colors"
                               >
-                                <Trash2 className="w-3.5 h-3.5 text-rose-600" />
-                                <span>Delete</span>
+                                <Trash2 className="w-4 h-4" />
                               </button>
                             </div>
                           </td>
