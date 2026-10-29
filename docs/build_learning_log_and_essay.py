@@ -34,7 +34,7 @@ def build_learning_log():
     p_title.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p_title.paragraph_format.space_before = Pt(6)
     p_title.paragraph_format.space_after = Pt(8)
-    r = p_title.add_run("LEARNING LOG: SELF-DIRECTED LIFELONG LEARNING (CO4, PO12)\nProject: CampusSync — RUET Campus Event Management System")
+    r = p_title.add_run("LEARNING LOG: SELF-DIRECTED LIFELONG LEARNING (CO4, PO12)\nProject: CampusEvents — RUET Campus Event Management System")
     r.font.name = 'Times New Roman'
     r.font.size = Pt(13)
     r.font.bold = True
@@ -154,7 +154,7 @@ def build_html_and_pdf_learning_log():
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Learning Log - CampusSync</title>
+  <title>Learning Log - CampusEvents</title>
   <style>
     @page { size: A4; margin: 18mm 20mm; }
     body { font-family: 'Times New Roman', Times, serif; font-size: 11pt; line-height: 1.35; color: #111; text-align: justify; }
@@ -179,7 +179,7 @@ def build_html_and_pdf_learning_log():
     <h2>Rajshahi University of Engineering & Technology</h2>
     <h3>Department of Computer Science & Engineering</h3>
     <h3>CSE 3206: Software Engineering Sessional (22 Series)</h3>
-    <div class="doc-title">LEARNING LOG: SELF-DIRECTED LIFELONG LEARNING (CO4, PO12)<br>Project: CampusSync — RUET Campus Event Management System</div>
+    <div class="doc-title">LEARNING LOG: SELF-DIRECTED LIFELONG LEARNING (CO4, PO12)<br>Project: CampusEvents — RUET Campus Event Management System</div>
   </div>
 
   <table>
@@ -355,7 +355,7 @@ def build_reflection_essay():
     add_table_data(doc, meta_headers, meta_rows, [Inches(1.8), Inches(1.2), Inches(2.2), Inches(1.3)])
 
     add_heading_1(doc, "1. Architectural & Technical Decisions")
-    add_p(doc, "Developing CampusSync for the CSE 3206 sessional challenged me to bridge the divide between theoretical software engineering principles and real-world system architecture. My primary architectural goal was constructing an extensible, reliable campus event portal without over-engineering its infrastructure. Choosing a component-driven React frontend coupled with Google Firebase gave me immediate reactivity, but relying on cloud services introduced potential failure points during network-isolated laboratory evaluations. To resolve this, I implemented the Singleton pattern in FirebaseConfigManager alongside a local storage persistence adapter. This foundational decision decoupled the presentation layer from the physical backend, allowing seamless live execution whether connected to cloud Firestore or operating offline.")
+    add_p(doc, "Developing CampusEvents for the CSE 3206 sessional challenged me to bridge the divide between theoretical software engineering principles and real-world system architecture. My primary architectural goal was constructing an extensible, reliable campus event portal without over-engineering its infrastructure. Choosing a component-driven React frontend coupled with Google Firebase gave me immediate reactivity, but relying on cloud services introduced potential failure points during network-isolated laboratory evaluations. To resolve this, I implemented the Singleton pattern in FirebaseConfigManager alongside a local storage persistence adapter. This foundational decision decoupled the presentation layer from the physical backend, allowing seamless live execution whether connected to cloud Firestore or operating offline.")
     add_p(doc, "A second pivotal decision was enforcing object-oriented design patterns across business domains. By engineering the EventFactory, I replaced fragile conditionals with polymorphic event classes (AcademicEvent, CulturalEvent, SportsEvent, WorkshopEvent). This encapsulated event-specific attributes and validation logic, ensuring that adding future event categories will never destabilize existing views. Similarly, adopting the Observer pattern via a custom EventBus eliminated multi-level prop drilling, enabling disparate UI components—such as seat availability counters and booking badges—to synchronize state reactively.")
 
     add_heading_1(doc, "2. Critical Analysis of Technical Challenges")
@@ -366,7 +366,7 @@ def build_reflection_essay():
     add_p(doc, "My self-directed learning journey relied on diverse technical resources. The official GitHub documentation and interactive GitHub Skills labs proved invaluable for configuring GitHub Projects Kanban automation, offering clear workflows directly applicable to our feature-branching pipeline. Refactoring.Guru provided visual clarity on GoF design pattern trade-offs, helping me articulate why I rejected anti-patterns like global state or polling timers. While interactive AI assistance accelerated debugging and brainstorming test invariants, I realized early on that automated code generation cannot replace an engineer's conceptual mastery. Every architectural decision and test assertion demanded my active comprehension to ensure defensibility during examination.")
 
     add_heading_1(doc, "4. Future Learning Plan (Next Skill to Learn)")
-    add_p(doc, "Reflecting on the lessons gleaned from CampusSync, the clear next frontier in my software engineering development is mastering Continuous Integration and Continuous Deployment (CI/CD) pipelines using GitHub Actions, integrated with automated End-to-End (E2E) testing via Playwright. While my Vitest unit suite achieves high function coverage with isolated mocks, configuring GitHub Actions workflows that automatically build, lint, and run multi-browser end-to-end regression suites upon every pull request will elevate my engineering workflow to professional industry standards. Mastering containerized deployments with Docker and cloud automated delivery constitutes my immediate technical roadmap for the upcoming academic semester.")
+    add_p(doc, "Reflecting on the lessons gleaned from CampusEvents, the clear next frontier in my software engineering development is mastering Continuous Integration and Continuous Deployment (CI/CD) pipelines using GitHub Actions, integrated with automated End-to-End (E2E) testing via Playwright. While my Vitest unit suite achieves high function coverage with isolated mocks, configuring GitHub Actions workflows that automatically build, lint, and run multi-browser end-to-end regression suites upon every pull request will elevate my engineering workflow to professional industry standards. Mastering containerized deployments with Docker and cloud automated delivery constitutes my immediate technical roadmap for the upcoming academic semester.")
 
     docx_path = os.path.join(DOCS_DIR, "Reflection_Essay.docx")
     doc.save(docx_path)
@@ -379,7 +379,7 @@ def build_html_and_pdf_reflection_essay():
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Reflection Essay - CampusSync</title>
+  <title>Reflection Essay - CampusEvents</title>
   <style>
     @page { size: A4; margin: 20mm 22mm; }
     body { font-family: 'Times New Roman', Times, serif; font-size: 11pt; line-height: 1.45; color: #111; text-align: justify; }
@@ -421,7 +421,7 @@ def build_html_and_pdf_reflection_essay():
   </table>
 
   <h1>1. Architectural & Technical Decisions</h1>
-  <p>Developing CampusSync for the CSE 3206 sessional challenged me to bridge the divide between theoretical software engineering principles and real-world system architecture. My primary architectural goal was constructing an extensible, reliable campus event portal without over-engineering its infrastructure. Choosing a component-driven React frontend coupled with Google Firebase gave me immediate reactivity, but relying on cloud services introduced potential failure points during network-isolated laboratory evaluations. To resolve this, I implemented the Singleton pattern in <code>FirebaseConfigManager</code> alongside a local storage persistence adapter. This foundational decision decoupled the presentation layer from the physical backend, allowing seamless live execution whether connected to cloud Firestore or operating offline.</p>
+  <p>Developing CampusEvents for the CSE 3206 sessional challenged me to bridge the divide between theoretical software engineering principles and real-world system architecture. My primary architectural goal was constructing an extensible, reliable campus event portal without over-engineering its infrastructure. Choosing a component-driven React frontend coupled with Google Firebase gave me immediate reactivity, but relying on cloud services introduced potential failure points during network-isolated laboratory evaluations. To resolve this, I implemented the Singleton pattern in <code>FirebaseConfigManager</code> alongside a local storage persistence adapter. This foundational decision decoupled the presentation layer from the physical backend, allowing seamless live execution whether connected to cloud Firestore or operating offline.</p>
   <p>A second pivotal decision was enforcing object-oriented design patterns across business domains. By engineering the <code>EventFactory</code>, I replaced fragile conditionals with polymorphic event classes (<code>AcademicEvent</code>, <code>CulturalEvent</code>, <code>SportsEvent</code>, <code>WorkshopEvent</code>). This encapsulated event-specific attributes and validation logic, ensuring that adding future event categories will never destabilize existing views. Similarly, adopting the Observer pattern via a custom <code>EventBus</code> eliminated multi-level prop drilling, enabling disparate UI components—such as seat availability counters and booking badges—to synchronize state reactively.</p>
 
   <h1>2. Critical Analysis of Technical Challenges</h1>
@@ -432,7 +432,7 @@ def build_html_and_pdf_reflection_essay():
   <p>My self-directed learning journey relied on diverse technical resources. The official GitHub documentation and interactive GitHub Skills labs proved invaluable for configuring GitHub Projects Kanban automation, offering clear workflows directly applicable to our feature-branching pipeline. Refactoring.Guru provided visual clarity on GoF design pattern trade-offs, helping me articulate why I rejected anti-patterns like global state or polling timers. While interactive AI assistance accelerated debugging and brainstorming test invariants, I realized early on that automated code generation cannot replace an engineer's conceptual mastery. Every architectural decision and test assertion demanded my active comprehension to ensure defensibility during examination.</p>
 
   <h1>4. Future Learning Plan (Next Skill to Learn)</h1>
-  <p>Reflecting on the lessons gleaned from CampusSync, the clear next frontier in my software engineering development is mastering Continuous Integration and Continuous Deployment (CI/CD) pipelines using GitHub Actions, integrated with automated End-to-End (E2E) testing via Playwright. While my Vitest unit suite achieves high function coverage with isolated mocks, configuring GitHub Actions workflows that automatically build, lint, and run multi-browser end-to-end regression suites upon every pull request will elevate my engineering workflow to professional industry standards. Mastering containerized deployments with Docker and cloud automated delivery constitutes my immediate technical roadmap for the upcoming academic semester.</p>
+  <p>Reflecting on the lessons gleaned from CampusEvents, the clear next frontier in my software engineering development is mastering Continuous Integration and Continuous Deployment (CI/CD) pipelines using GitHub Actions, integrated with automated End-to-End (E2E) testing via Playwright. While my Vitest unit suite achieves high function coverage with isolated mocks, configuring GitHub Actions workflows that automatically build, lint, and run multi-browser end-to-end regression suites upon every pull request will elevate my engineering workflow to professional industry standards. Mastering containerized deployments with Docker and cloud automated delivery constitutes my immediate technical roadmap for the upcoming academic semester.</p>
 
 </body>
 </html>

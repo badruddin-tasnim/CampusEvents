@@ -4,7 +4,7 @@ import { eventBus } from '../patterns/EventBus.js';
 
 const ADMIN_EMAIL = 'admin@ruet.ac.bd';
 const ADMIN_PASSWORD = 'AdminPass123!';
-const STORAGE_USER_KEY = 'campussync_current_user_ruet';
+const STORAGE_USER_KEY = 'campusevents_current_user_ruet';
 
 export class AuthService {
   constructor() {

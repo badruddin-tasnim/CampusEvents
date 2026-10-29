@@ -1,4 +1,4 @@
-# CampusSync — RUET Campus Event Management System
+# CampusEvents — RUET Campus Event Management System
 > **Course:** CSE 3206 — Software Engineering Sessional (22 Series)  
 > **Institution:** Department of Computer Science & Engineering, Rajshahi University of Engineering & Technology (RUET)  
 > **Course Outcomes Covered:** CO4, PO12 (Self-Directed Lifelong Learning, Software Engineering Principles)
@@ -6,7 +6,7 @@
 ---
 
 ## 1. Project Overview & Motivation
-CampusSync is a modern, responsive campus event management web application engineered for Rajshahi University of Engineering & Technology. It centralizes discovery, seat reservation, ticket generation, and administration for academic hackathons, technical workshops, sports tournaments, and cultural fests.
+CampusEvents is a modern, responsive campus event management web application engineered for Rajshahi University of Engineering & Technology. It centralizes discovery, seat reservation, ticket generation, and administration for academic hackathons, technical workshops, sports tournaments, and cultural fests.
 
 ### Key Objectives
 * **Five Functional Modules:** Modular architecture encompassing Authentication, Event Catalog & Search, Admin Event Management, RSVP & Digital Ticketing, and Campus Announcements & Attendee Feedback.

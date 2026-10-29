@@ -36,7 +36,7 @@ def build_project_report():
     p_title.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p_title.paragraph_format.space_before = Pt(8)
     p_title.paragraph_format.space_after = Pt(6)
-    r = p_title.add_run("PROJECT REPORT: CAMPUSSYNC\nA Modular Campus Event Management System Following the Full SDLC")
+    r = p_title.add_run("PROJECT REPORT: CAMPUSEVENTS\nA Modular Campus Event Management System Following the Full SDLC")
     r.font.name = 'Times New Roman'
     r.font.size = Pt(14)
     r.font.bold = True
@@ -50,7 +50,7 @@ def build_project_report():
     # 1. Executive Summary & Problem Statement
     add_heading_1(doc, "1. Executive Summary & Problem Statement")
     add_p(doc, "At tertiary educational institutions such as Rajshahi University of Engineering & Technology (RUET), numerous academic seminars, competitive programming hackathons, cultural festivals, and inter-department sports tournaments occur concurrently throughout the academic calendar. Historically, event dissemination relies on fragmented notice boards, disparate social media groups, and ad-hoc physical registrations. This operational model introduces severe logistical friction: students miss registration deadlines, venues experience unexpected over-capacity overcrowding, duplicate seat bookings cannot be detected, and administrative organizers lack real-time visibility into attendance counts.")
-    add_p(doc, "To solve these operational challenges systematically, CampusSync was engineered as a robust, non-trivial campus event management application developed in strict conformance with the complete Software Development Lifecycle (SDLC). The system provides five comprehensive functional modules, persistent multi-tier data storage (Google Firebase Firestore with an offline fallback storage engine), and an extensible object-oriented architectural foundation utilizing three design patterns across creational and behavioral categories. Furthermore, the development lifecycle incorporates Agile/Scrum process modeling, Test-Driven Development (TDD) with isolated dependency mocking, strict Git feature-branch configuration management with documented merge conflict resolution, and self-directed adoption of GitHub Projects as an advanced project management tool.")
+    add_p(doc, "To solve these operational challenges systematically, CampusEvents was engineered as a robust, non-trivial campus event management application developed in strict conformance with the complete Software Development Lifecycle (SDLC). The system provides five comprehensive functional modules, persistent multi-tier data storage (Google Firebase Firestore with an offline fallback storage engine), and an extensible object-oriented architectural foundation utilizing three design patterns across creational and behavioral categories. Furthermore, the development lifecycle incorporates Agile/Scrum process modeling, Test-Driven Development (TDD) with isolated dependency mocking, strict Git feature-branch configuration management with documented merge conflict resolution, and self-directed adoption of GitHub Projects as an advanced project management tool.")
 
     # 2. Requirements Analysis & Process Model
     add_heading_1(doc, "2. Requirements Analysis & Process Model")
@@ -85,7 +85,7 @@ def build_project_report():
 
     # 3. System Architecture & UML Modeling
     add_heading_1(doc, "3. System Architecture & UML Modeling")
-    add_p(doc, "CampusSync employs a clean, four-layer architectural paradigm separating presentation, domain services, design patterns, and persistence engines. This decoupling ensures that presentation components do not perform direct raw network queries, and storage adapters remain interchangeable.")
+    add_p(doc, "CampusEvents employs a clean, four-layer architectural paradigm separating presentation, domain services, design patterns, and persistence engines. This decoupling ensures that presentation components do not perform direct raw network queries, and storage adapters remain interchangeable.")
     add_image_if_exists(doc, os.path.join(DIAGRAMS_DIR, "architecture_diagram.png"), "Figure 1: High-Level Four-Layer System Architecture Diagram", width=Inches(5.6))
     
     add_heading_2(doc, "3.1 Use Case Model")
@@ -98,7 +98,7 @@ def build_project_report():
 
     add_heading_2(doc, "3.3 User Interface Prototypes & System Mockups")
     add_p(doc, "The user interface was crafted with a clean, contemporary aesthetic leveraging Tailwind CSS, providing intuitive information hierarchy, responsive layouts, and immediate visual feedback on seat capacities.")
-    add_image_if_exists(doc, os.path.join(DIAGRAMS_DIR, "ui_home.png"), "Figure 4: CampusSync Student Portal & Event Discovery Feed with Live Seat Indicators", width=Inches(5.4))
+    add_image_if_exists(doc, os.path.join(DIAGRAMS_DIR, "ui_home.png"), "Figure 4: CampusEvents Student Portal & Event Discovery Feed with Live Seat Indicators", width=Inches(5.4))
     add_image_if_exists(doc, os.path.join(DIAGRAMS_DIR, "ui_admin.png"), "Figure 5: Campus Administrator Management Console & Real-Time Broadcast Dashboard", width=Inches(5.4))
 
     # 4. Design Patterns Implementation
@@ -124,8 +124,8 @@ def build_project_report():
     add_image_if_exists(doc, os.path.join(DIAGRAMS_DIR, "pattern_observer.png"), "Figure 8: UML Structure of Observer Pattern (EventBus & UI Observers)", width=Inches(4.8))
 
     add_heading_2(doc, "4.4 Comprehensive System UML Class Diagram")
-    add_p(doc, "Figure 9 illustrates the complete object-oriented structure of CampusSync, adhering to the standard RUET CSE Department modeling conventions. Each class is structured into three standard compartments (Name, Attributes with visibility and type, and Methods with parameter types and return values). The diagram explicitly illustrates Generalization (inheritance between CampusEvent and its subclasses), Composition (CampusEvent strongly owns its RSVPReservations), Aggregation (UserProfile owns RSVPReservations), and Dependency (services calling EventFactory and EventBus).")
-    add_image_if_exists(doc, os.path.join(DIAGRAMS_DIR, "class_diagram.png"), "Figure 9: Comprehensive CampusSync UML Class Diagram (With RUET Standard Multiplicities, Compositions, and Aggregations)", width=Inches(5.5))
+    add_p(doc, "Figure 9 illustrates the complete object-oriented structure of CampusEvents, adhering to the standard RUET CSE Department modeling conventions. Each class is structured into three standard compartments (Name, Attributes with visibility and type, and Methods with parameter types and return values). The diagram explicitly illustrates Generalization (inheritance between CampusEvent and its subclasses), Composition (CampusEvent strongly owns its RSVPReservations), Aggregation (UserProfile owns RSVPReservations), and Dependency (services calling EventFactory and EventBus).")
+    add_image_if_exists(doc, os.path.join(DIAGRAMS_DIR, "class_diagram.png"), "Figure 9: Comprehensive CampusEvents UML Class Diagram (With RUET Standard Multiplicities, Compositions, and Aggregations)", width=Inches(5.5))
 
     # 5. Software Testing & Quality Assurance
     add_heading_1(doc, "5. Software Testing & Quality Assurance")
@@ -192,9 +192,9 @@ def build_project_report():
     ]
     add_table_data(doc, proj_headers, proj_rows, [Inches(1.8), Inches(1.8), Inches(1.5), Inches(1.4)])
 
-    add_heading_2(doc, "7.3 Practical Implementation in CampusSync")
+    add_heading_2(doc, "7.3 Practical Implementation in CampusEvents")
     add_p(doc, "A custom Kanban board was initialized with five automated workflow columns: (1) `Backlog` containing formal user story issues; (2) `Ready / To Do` containing prioritized sprint tasks; (3) `In Progress` tracking active feature branches; (4) `In Review / Testing` holding open pull requests awaiting test verification; and (5) `Done` archiving completed deliverables. Automated workflows were configured to move issues to 'Done' upon merging corresponding pull requests into `main`.")
-    add_p(doc, "Figures 10 through 13 demonstrate the lifecycle progression of CampusSync across four distinct operational sprint stages:")
+    add_p(doc, "Figures 10 through 13 demonstrate the lifecycle progression of CampusEvents across four distinct operational sprint stages:")
     add_image_if_exists(doc, os.path.join(DIAGRAMS_DIR, "gh_project_stage1_planning.png"), "Figure 10: Stage 1 — Sprint Backlog Grooming & Task Prioritization (All Tasks in Backlog / Todo)", width=Inches(5.4))
     add_image_if_exists(doc, os.path.join(DIAGRAMS_DIR, "gh_project_stage2_in_progress.png"), "Figure 11: Stage 2 — Active Feature Development & In-Progress Module Implementation", width=Inches(5.4))
     add_image_if_exists(doc, os.path.join(DIAGRAMS_DIR, "gh_project_stage3_testing.png"), "Figure 12: Stage 3 — Testing, Mock Isolation & PR Code Review Phase", width=Inches(5.4))
@@ -207,7 +207,7 @@ def build_project_report():
 
     # 9. Conclusion & Extensibility Roadmap
     add_heading_1(doc, "9. Conclusion & Extensibility Roadmap")
-    add_p(doc, "CampusSync demonstrates that rigorous software engineering methodologies—encompassing formal requirement analysis, design pattern abstraction, automated unit testing with mocks, and structured Git configuration management—yield a resilient, extensible application. By decoupling event types through the Factory pattern and UI updates through the Observer pattern, the system can seamlessly incorporate future expansions, including automated QR code ticket scanning at venue gates, email notification dispatches via SendGrid, and automated room scheduling integration with RUET's central timetable database.")
+    add_p(doc, "CampusEvents demonstrates that rigorous software engineering methodologies—encompassing formal requirement analysis, design pattern abstraction, automated unit testing with mocks, and structured Git configuration management—yield a resilient, extensible application. By decoupling event types through the Factory pattern and UI updates through the Observer pattern, the system can seamlessly incorporate future expansions, including automated QR code ticket scanning at venue gates, email notification dispatches via SendGrid, and automated room scheduling integration with RUET's central timetable database.")
 
     # Save DOCX
     docx_path = os.path.join(DOCS_DIR, "Project_Report.docx")
@@ -222,7 +222,7 @@ def build_html_and_pdf_report():
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Project Report - CampusSync</title>
+  <title>Project Report - CampusEvents</title>
   <style>
     @page {{
       size: A4;
@@ -342,7 +342,7 @@ def build_html_and_pdf_report():
     <h2>Rajshahi University of Engineering & Technology</h2>
     <h3>Department of Computer Science & Engineering</h3>
     <h3>CSE 3206: Software Engineering Sessional (22 Series)</h3>
-    <div class="doc-title">PROJECT REPORT: CAMPUSSYNC<br>A Modular Campus Event Management System Following the Full SDLC</div>
+    <div class="doc-title">PROJECT REPORT: CAMPUSEVENTS<br>A Modular Campus Event Management System Following the Full SDLC</div>
   </div>
 
   <table>
@@ -362,7 +362,7 @@ def build_html_and_pdf_report():
 
   <h1>1. Executive Summary & Problem Statement</h1>
   <p>At tertiary educational institutions such as Rajshahi University of Engineering & Technology (RUET), numerous academic seminars, competitive programming hackathons, cultural festivals, and inter-department sports tournaments occur concurrently throughout the academic calendar. Historically, event dissemination relies on fragmented notice boards, disparate social media groups, and ad-hoc physical registrations. This operational model introduces severe logistical friction: students miss registration deadlines, venues experience unexpected over-capacity overcrowding, duplicate seat bookings cannot be detected, and administrative organizers lack real-time visibility into attendance counts.</p>
-  <p>To solve these operational challenges systematically, <strong>CampusSync</strong> was engineered as a robust, non-trivial campus event management application developed in strict conformance with the complete Software Development Lifecycle (SDLC). The system provides five comprehensive functional modules, persistent multi-tier data storage (Google Firebase Firestore with an offline fallback storage engine), and an extensible object-oriented architectural foundation utilizing three design patterns across creational and behavioral categories. Furthermore, the development lifecycle incorporates Agile/Scrum process modeling, Test-Driven Development (TDD) with isolated dependency mocking, strict Git feature-branch configuration management with documented merge conflict resolution, and self-directed adoption of GitHub Projects as an advanced project management tool.</p>
+  <p>To solve these operational challenges systematically, <strong>CampusEvents</strong> was engineered as a robust, non-trivial campus event management application developed in strict conformance with the complete Software Development Lifecycle (SDLC). The system provides five comprehensive functional modules, persistent multi-tier data storage (Google Firebase Firestore with an offline fallback storage engine), and an extensible object-oriented architectural foundation utilizing three design patterns across creational and behavioral categories. Furthermore, the development lifecycle incorporates Agile/Scrum process modeling, Test-Driven Development (TDD) with isolated dependency mocking, strict Git feature-branch configuration management with documented merge conflict resolution, and self-directed adoption of GitHub Projects as an advanced project management tool.</p>
 
   <h1>2. Requirements Analysis & Process Model</h1>
   <h2>2.1 Functional Requirements (The Five Core Modules)</h2>
@@ -424,7 +424,7 @@ def build_html_and_pdf_report():
   </ul>
 
   <h1>3. System Architecture & UML Modeling</h1>
-  <p>CampusSync employs a clean, four-layer architectural paradigm separating presentation, domain services, design patterns, and persistence engines. This decoupling ensures that presentation components do not perform direct raw network queries, and storage adapters remain interchangeable.</p>
+  <p>CampusEvents employs a clean, four-layer architectural paradigm separating presentation, domain services, design patterns, and persistence engines. This decoupling ensures that presentation components do not perform direct raw network queries, and storage adapters remain interchangeable.</p>
   
   <div class="img-container">
     <img src="../diagrams/architecture_diagram.png" alt="Architecture Diagram">
@@ -452,7 +452,7 @@ def build_html_and_pdf_report():
 
   <div class="img-container">
     <img src="../diagrams/ui_home.png" alt="Home UI">
-    <div class="caption">Figure 4: CampusSync Student Portal & Event Discovery Feed with Live Seat Indicators</div>
+    <div class="caption">Figure 4: CampusEvents Student Portal & Event Discovery Feed with Live Seat Indicators</div>
   </div>
 
   <div class="img-container">
@@ -500,11 +500,11 @@ def build_html_and_pdf_report():
   </div>
 
   <h2>4.4 Comprehensive System UML Class Diagram</h2>
-  <p>Figure 9 illustrates the complete object-oriented structure of CampusSync, adhering to the standard RUET CSE Department modeling conventions. Each class is structured into three standard compartments (Name, Attributes with visibility and type, and Methods with parameter types and return values). The diagram explicitly illustrates Generalization (inheritance between CampusEvent and its subclasses), Composition (CampusEvent strongly owns its RSVPReservations), Aggregation (UserProfile owns RSVPReservations), and Dependency (services calling EventFactory and EventBus).</p>
+  <p>Figure 9 illustrates the complete object-oriented structure of CampusEvents, adhering to the standard RUET CSE Department modeling conventions. Each class is structured into three standard compartments (Name, Attributes with visibility and type, and Methods with parameter types and return values). The diagram explicitly illustrates Generalization (inheritance between CampusEvent and its subclasses), Composition (CampusEvent strongly owns its RSVPReservations), Aggregation (UserProfile owns RSVPReservations), and Dependency (services calling EventFactory and EventBus).</p>
 
   <div class="img-container">
     <img src="../diagrams/class_diagram.png" alt="Class Diagram" style="max-width: 95%;">
-    <div class="caption">Figure 9: Comprehensive CampusSync UML Class Diagram (With RUET Standard Multiplicities, Compositions, and Aggregations)</div>
+    <div class="caption">Figure 9: Comprehensive CampusEvents UML Class Diagram (With RUET Standard Multiplicities, Compositions, and Aggregations)</div>
   </div>
 
   <h1>5. Software Testing & Quality Assurance</h1>
@@ -653,9 +653,9 @@ def build_html_and_pdf_report():
     </tr>
   </table>
 
-  <h2>7.3 Practical Implementation in CampusSync</h2>
+  <h2>7.3 Practical Implementation in CampusEvents</h2>
   <p>A custom Kanban board was initialized with five automated workflow columns: (1) <code>Backlog</code> containing formal user story issues; (2) <code>Ready / To Do</code> containing prioritized sprint tasks; (3) <code>In Progress</code> tracking active feature branches; (4) <code>In Review / Testing</code> holding open pull requests awaiting test verification; and (5) <code>Done</code> archiving completed deliverables. Automated workflows were configured to move issues to 'Done' upon merging corresponding pull requests into <code>main</code>.</p>
-  <p>Figures 10 through 13 demonstrate the lifecycle progression of CampusSync across four distinct operational sprint stages:</p>
+  <p>Figures 10 through 13 demonstrate the lifecycle progression of CampusEvents across four distinct operational sprint stages:</p>
 
   <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 8px 0; page-break-inside: avoid;">
     <div style="text-align: center; border: 1px solid #e2e8f0; border-radius: 4px; padding: 4px; background: #fff;">
@@ -681,7 +681,7 @@ def build_html_and_pdf_report():
   <p><strong>Disclosure of AI Assistance:</strong> An advanced AI coding assistant (Google Antigravity / Gemini 3.8 Flash) was employed as an interactive pair-programming companion. Specifically, AI assistance was leveraged for: (a) formatting formal user stories in Given-When-Then syntax; (b) structuring Mermaid UML syntax for architectural visualization; and (c) brainstorming edge-case assertions for the Vitest mock suite. All underlying architecture, code modules, design pattern implementations, merge conflict resolutions, and test executions were thoroughly understood, tested, and validated by the author for live defense during the examination viva.</p>
 
   <h1>9. Conclusion & Extensibility Roadmap</h1>
-  <p>CampusSync demonstrates that rigorous software engineering methodologies—encompassing formal requirement analysis, design pattern abstraction, automated unit testing with mocks, and structured Git configuration management—yield a resilient, extensible application. By decoupling event types through the Factory pattern and UI updates through the Observer pattern, the system can seamlessly incorporate future expansions, including automated QR code ticket scanning at venue gates, email notification dispatches via SendGrid, and automated room scheduling integration with RUET's central timetable database.</p>
+  <p>CampusEvents demonstrates that rigorous software engineering methodologies—encompassing formal requirement analysis, design pattern abstraction, automated unit testing with mocks, and structured Git configuration management—yield a resilient, extensible application. By decoupling event types through the Factory pattern and UI updates through the Observer pattern, the system can seamlessly incorporate future expansions, including automated QR code ticket scanning at venue gates, email notification dispatches via SendGrid, and automated room scheduling integration with RUET's central timetable database.</p>
 
 </body>
 </html>

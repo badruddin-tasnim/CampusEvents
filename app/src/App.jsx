@@ -295,7 +295,7 @@ export default function App() {
       <footer className="mt-16 bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-400">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
           <p>
-            <strong>CampusSync</strong> • Department of Computer Science & Engineering, RUET
+            <strong>CampusEvents</strong> • Department of Computer Science & Engineering, RUET
           </p>
           <p>
             CSE 3206 Software Engineering Sessional (22 Series)

@@ -65,7 +65,7 @@ export default function AuthModal({
           <div className="w-12 h-12 mx-auto rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-3">
             <ShieldCheck className="w-6 h-6" />
           </div>
-          <h3 className="text-xl font-extrabold text-slate-900 tracking-tight">Welcome to CampusSync</h3>
+          <h3 className="text-xl font-extrabold text-slate-900 tracking-tight">Welcome to CampusEvents</h3>
           <p className="text-xs text-slate-500 mt-1">Rajshahi University of Engineering & Technology</p>
 
           {/* Mode Switcher */}

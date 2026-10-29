@@ -14,9 +14,9 @@ import {
   where 
 } from 'firebase/firestore';
 
-const STORAGE_KEY_EVENTS = 'campussync_events_ruet_v1';
-const STORAGE_KEY_RSVPS = 'campussync_rsvps_ruet_v1';
-const STORAGE_KEY_ANNOUNCEMENTS = 'campussync_announcements_ruet_v1';
+const STORAGE_KEY_EVENTS = 'campusevents_events_ruet_v1';
+const STORAGE_KEY_RSVPS = 'campusevents_rsvps_ruet_v1';
+const STORAGE_KEY_ANNOUNCEMENTS = 'campusevents_announcements_ruet_v1';
 
 export class EventService {
   constructor() {
