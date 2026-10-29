@@ -314,6 +314,7 @@ export default function App() {
         userReservation={selectedEvent ? myReservations.find(r => r.eventId === selectedEvent.id) : null}
         currentUser={currentUser}
         onOpenAuth={() => setIsAuthOpen(true)}
+        onDeleteEvent={handleDeleteEvent}
       />
 
       <AdminEventModal
@@ -323,6 +324,7 @@ export default function App() {
           setEventToEdit(null);
         }}
         onSave={handleSaveEvent}
+        onDeleteEvent={handleDeleteEvent}
         eventToEdit={eventToEdit}
       />
 

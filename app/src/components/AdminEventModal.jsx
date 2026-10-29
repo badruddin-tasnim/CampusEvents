@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { X, Calendar, Clock, MapPin, Users, Sparkles, Check, AlertCircle } from 'lucide-react';
+import { X, Calendar, Clock, MapPin, Users, Sparkles, Check, AlertCircle, Trash2 } from 'lucide-react';
 import EventFactory from '../patterns/EventFactory.js';
 
 export default function AdminEventModal({
   isOpen,
   onClose,
   onSave,
+  onDeleteEvent,
   eventToEdit
 }) {
   const [formData, setFormData] = useState({
@@ -306,22 +307,42 @@ export default function AdminEventModal({
           </div>
 
           {/* Footer Submit */}
-          <div className="pt-3 border-t border-slate-100 flex items-center justify-end gap-2">
-            <button
-              type="button"
-              onClick={onClose}
-              className="px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-800 bg-white border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              disabled={submitting}
-              className="px-5 py-2 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-xs transition-colors flex items-center gap-1.5"
-            >
-              <Check className="w-4 h-4" />
-              <span>{submitting ? 'Saving...' : eventToEdit ? 'Save Changes' : 'Publish Event'}</span>
-            </button>
+          <div className="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+            <div>
+              {eventToEdit && onDeleteEvent && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (window.confirm(`Are you sure you want to delete "${eventToEdit.title}"?`)) {
+                      onDeleteEvent(eventToEdit.id);
+                      onClose();
+                    }
+                  }}
+                  className="px-3 py-2 text-xs font-bold text-rose-700 bg-rose-50 hover:bg-rose-600 hover:text-white border border-rose-300 rounded-xl transition-colors flex items-center gap-1.5"
+                >
+                  <Trash2 className="w-3.5 h-3.5" />
+                  <span>Delete Event</span>
+                </button>
+              )}
+            </div>
+
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={onClose}
+                className="px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-800 bg-white border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                disabled={submitting}
+                className="px-5 py-2 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-xs transition-colors flex items-center gap-1.5"
+              >
+                <Check className="w-4 h-4" />
+                <span>{submitting ? 'Saving...' : eventToEdit ? 'Save Changes' : 'Publish Event'}</span>
+              </button>
+            </div>
           </div>
         </form>
       </div>

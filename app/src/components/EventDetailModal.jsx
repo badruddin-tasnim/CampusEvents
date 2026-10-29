@@ -12,7 +12,8 @@ import {
   CheckCircle2, 
   Star, 
   Send,
-  Ticket
+  Ticket,
+  Trash2
 } from 'lucide-react';
 
 export default function EventDetailModal({
@@ -22,7 +23,8 @@ export default function EventDetailModal({
   isUserBooked,
   userReservation,
   currentUser,
-  onOpenAuth
+  onOpenAuth,
+  onDeleteEvent
 }) {
   const [reviews, setReviews] = useState([
     { id: 1, user: 'Tashfik (CSE 21)', rating: 5, comment: 'Attended the last edition. Super informative session for competitive programmers!' },
@@ -270,9 +272,25 @@ export default function EventDetailModal({
             </button>
 
             {currentUser?.role === 'admin' ? (
-              <span className="px-3 py-2 text-xs font-semibold text-slate-500 bg-slate-100 rounded-xl border border-slate-200">
-                Administrator View
-              </span>
+              <div className="flex items-center gap-2">
+                {onDeleteEvent && (
+                  <button
+                    onClick={() => {
+                      if (window.confirm(`Are you sure you want to delete "${event.title}"?`)) {
+                        onDeleteEvent(event.id);
+                        onClose();
+                      }
+                    }}
+                    className="px-3.5 py-2 text-xs font-bold text-rose-700 bg-rose-50 hover:bg-rose-600 hover:text-white border border-rose-300 rounded-xl transition-colors flex items-center gap-1.5"
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
+                    <span>Delete Event</span>
+                  </button>
+                )}
+                <span className="px-3 py-2 text-xs font-semibold text-slate-500 bg-slate-100 rounded-xl border border-slate-200">
+                  Administrator View
+                </span>
+              </div>
             ) : !currentUser ? (
               <button
                 onClick={() => {

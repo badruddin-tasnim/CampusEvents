@@ -306,30 +306,25 @@ export default function AdminDashboard({
                             </div>
                           </td>
                           <td className="py-3.5 pr-2 text-right whitespace-nowrap">
-                            <div className="flex items-center justify-end gap-1">
+                            <div className="flex items-center justify-end gap-1.5">
                               <button
                                 onClick={() => {
                                   setSelectedEventIdForAttendees(evt.id);
                                   setAdminTab('attendees');
                                 }}
                                 title="View Registered Attendees"
-                                className="p-1.5 text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors flex items-center gap-1"
+                                className="px-2 py-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 rounded-lg border border-indigo-200 transition-colors flex items-center gap-1"
                               >
-                                <Users className="w-4 h-4" />
-                              </button>
-                              <button
-                                onClick={() => onViewEvent(evt)}
-                                title="Preview Details"
-                                className="p-1.5 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
-                              >
-                                <Eye className="w-4 h-4" />
+                                <Users className="w-3.5 h-3.5" />
+                                <span className="hidden md:inline">Attendees</span>
                               </button>
                               <button
                                 onClick={() => onOpenEditModal(evt)}
                                 title="Edit Event"
-                                className="p-1.5 text-slate-400 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors"
+                                className="px-2 py-1 text-xs font-semibold text-amber-700 bg-amber-50 hover:bg-amber-100 rounded-lg border border-amber-200 transition-colors flex items-center gap-1"
                               >
-                                <Edit3 className="w-4 h-4" />
+                                <Edit3 className="w-3.5 h-3.5" />
+                                <span className="hidden md:inline">Edit</span>
                               </button>
                               <button
                                 onClick={() => {
@@ -338,9 +333,10 @@ export default function AdminDashboard({
                                   }
                                 }}
                                 title="Delete Event"
-                                className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
+                                className="px-2.5 py-1 text-xs font-bold text-rose-700 bg-rose-50 hover:bg-rose-100 rounded-lg border border-rose-300 transition-colors flex items-center gap-1 shadow-2xs"
                               >
-                                <Trash2 className="w-4 h-4" />
+                                <Trash2 className="w-3.5 h-3.5 text-rose-600" />
+                                <span>Delete</span>
                               </button>
                             </div>
                           </td>
