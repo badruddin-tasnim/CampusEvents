@@ -99,60 +99,7 @@ npm run test:coverage  # Generate coverage breakdown
 
 ---
 
-## 5. Configuration Management (Git Workflow)
-
-### 5.1 Branching Strategy
-* `main`: Production-ready release branch.
-* `feature/auth-module`: Google Sign-In and Admin authentication.
-* `feature/event-management`: Factory pattern, event catalog, and admin CRUD.
-* `feature/rsvp-booking`: Reservation logic, ticket codes, and seat quota checks.
-
-### 5.2 Pull Request History & Code Review
-* **Pull Request #1 (Accepted):** `feature/event-management` -> `main`
-  * *Title:* `feat: implement event factory pattern and dynamic catalog`
-  * *Review:* Reviewed and merged cleanly after passing unit test assertions.
-* **Pull Request #2 (Revised / Rejected initially):** `feature/rsvp-booking` -> `main`
-  * *Title:* `feat: add student rsvp booking and ticket generator`
-  * *Review Status:* Changes requested due to edge case where duplicate reservations by the same student were not rejected.
-  * *Revision:* Added check `userRsvps.some(r => r.eventId === eventId)` and verified with TDD test before approval and merge.
-
-### 5.3 Merge Conflict Simulation & Resolution
-* **Conflict Scenario:** Both `feature/auth-module` and `feature/event-management` concurrently updated `eventService.js` storage keys and user validation hooks.
-* **Conflict Markers:**
-  ```javascript
-  <<<<<<< HEAD
-  const user = authService.getCurrentUser();
-  if (!user || user.role !== 'admin') throw new Error('Unauthorized');
-  =======
-  if (!user?.uid) throw new Error('Authentication required to RSVP.');
-  >>>>>>> feature/rsvp-booking
-  ```
-* **Resolution:** Merged both checks into a unified authentication guard:
-  ```javascript
-  if (!user || !user.uid) {
-    throw new Error('Authentication required to perform this action.');
-  }
-  ```
-  Verified resolution with `npm run test` before committing `Merge branch 'feature/rsvp-booking' into main`.
-
----
-
-## 6. Self-Directed Learning: GitHub Projects
-* **Chosen Tool:** **GitHub Projects** (Project Planning & Kanban Board).
-* **Rationale:** Seamless integration with GitHub repository commits, branches, issues, and pull requests without switching contexts.
-* **Comparison with Alternatives:**
-  * *vs. Jira:* Jira is bloated and configuration-heavy for academic teams; GitHub Projects offers instantaneous markdown issue tracking.
-  * *vs. Trello:* Trello lacks native linkage to Git commit hashes and automated PR status triggers.
-* **Board Columns Configured:**
-  * `Backlog`: User stories and functional requirements.
-  * `Ready / To Do`: Prioritized tasks for Sprint 1.
-  * `In Progress`: Active feature branches.
-  * `In Review / Testing`: Open Pull Requests and test verification.
-  * `Done`: Merged PRs and passing CI tests.
-
----
-
-## 7. How to Run Locally
+## 5. How to Run Locally
 
 ### Prerequisites
 * Node.js v18+ (tested on Node.js v26)
@@ -181,5 +128,5 @@ npm run test:coverage  # Generate coverage breakdown
 
 ---
 
-## 8. Academic Integrity & AI Usage Statement
+## 6. Academic Integrity & AI Usage Statement
 In compliance with the RUET CSE 3206 instruction guidelines, AI assistance was utilized as a pair-programming and design brainstorming companion to structure user stories, generate UML diagrams, and formulate test scenarios. All underlying business logic, architectural pattern implementations, test suites, and report write-ups were authored, tested, and validated thoroughly by the author.
