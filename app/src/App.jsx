@@ -281,6 +281,7 @@ export default function App() {
                       onSelectEvent={(e) => setSelectedEvent(e)}
                       onQuickRsvp={handleQuickRsvp}
                       isUserBooked={bookedEventIds.has(evt.id)}
+                      isAdmin={currentUser?.role === 'admin'}
                     />
                   ))}
                 </div>

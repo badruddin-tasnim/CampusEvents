@@ -5,7 +5,8 @@ export default function EventCard({
   event,
   onSelectEvent,
   onQuickRsvp,
-  isUserBooked
+  isUserBooked = false,
+  isAdmin = false
 }) {
   const seatsLeft = event.getAvailableSeats ? event.getAvailableSeats() : Math.max(0, event.capacity - event.registeredCount);
   const isFull = seatsLeft <= 0;
@@ -107,30 +108,32 @@ export default function EventCard({
             onClick={() => onSelectEvent(event)}
             className="flex-1 px-3 py-2 text-xs font-semibold rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors"
           >
-            Details
+            {isAdmin ? 'View Details (Admin)' : 'Details'}
           </button>
 
-          {isUserBooked ? (
-            <button
-              disabled
-              className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200 cursor-default"
-            >
-              <CheckCircle2 className="w-3.5 h-3.5" /> Booked
-            </button>
-          ) : isFull ? (
-            <button
-              disabled
-              className="flex-1 px-3 py-2 text-xs font-semibold rounded-xl bg-slate-100 text-slate-400 cursor-not-allowed"
-            >
-              Sold Out
-            </button>
-          ) : (
-            <button
-              onClick={() => onQuickRsvp(event)}
-              className="flex-1 px-3 py-2 text-xs font-semibold rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white shadow-xs transition-colors"
-            >
-              Book Your Seat
-            </button>
+          {!isAdmin && (
+            isUserBooked ? (
+              <button
+                disabled
+                className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200 cursor-default"
+              >
+                <CheckCircle2 className="w-3.5 h-3.5" /> Booked
+              </button>
+            ) : isFull ? (
+              <button
+                disabled
+                className="flex-1 px-3 py-2 text-xs font-semibold rounded-xl bg-slate-100 text-slate-400 cursor-not-allowed"
+              >
+                Sold Out
+              </button>
+            ) : (
+              <button
+                onClick={() => onQuickRsvp(event)}
+                className="flex-1 px-3 py-2 text-xs font-semibold rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white shadow-xs transition-colors"
+              >
+                Book Your Seat
+              </button>
+            )
           )}
         </div>
       </div>
