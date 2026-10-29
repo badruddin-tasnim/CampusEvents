@@ -5,10 +5,7 @@ import {
   Trash2, 
   Eye, 
   Megaphone, 
-  Users, 
-  Calendar, 
   CheckCircle2, 
-  TrendingUp, 
   Send,
   Search
 } from 'lucide-react';
@@ -74,12 +71,6 @@ export default function AdminDashboard({
     return matchesCategory && matchesSearch;
   });
 
-  // Compute metrics
-  const totalEvents = events.length;
-  const totalCapacity = events.reduce((sum, e) => sum + (e.capacity || 0), 0);
-  const totalBooked = events.reduce((sum, e) => sum + (e.registeredCount || 0), 0);
-  const fillRate = totalCapacity > 0 ? Math.round((totalBooked / totalCapacity) * 100) : 0;
-
   const handlePostAnnouncement = async (e) => {
     e.preventDefault();
     if (!announcementTitle.trim() || !announcementMsg.trim()) return;
@@ -100,53 +91,6 @@ export default function AdminDashboard({
 
   return (
     <div className="space-y-6">
-      
-      {/* Top Banner & Quick Metrics */}
-      <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
-        <div className="relative z-10 max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 border border-indigo-400/30 text-indigo-300 text-xs font-semibold mb-3">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            RUET Campus Administrator Console
-          </div>
-          <h1 className="text-2xl sm:text-3xl font-black tracking-tight">
-            Event Management & Attendance Control
-          </h1>
-          <p className="text-sm text-slate-300 mt-2 max-w-2xl">
-            Create academic seminars, manage student seat quotas, publish campus-wide bulletins, and track live RSVP attendance across all university departments.
-          </p>
-        </div>
-
-        {/* 4 Stat Cards */}
-        <div className="relative z-10 grid grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/10">
-            <div className="flex items-center gap-2 text-indigo-300 text-xs font-semibold">
-              <Calendar className="w-4 h-4" /> Total Events
-            </div>
-            <p className="text-2xl sm:text-3xl font-extrabold mt-1">{totalEvents}</p>
-          </div>
-
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/10">
-            <div className="flex items-center gap-2 text-emerald-300 text-xs font-semibold">
-              <Users className="w-4 h-4" /> RSVPs Booked
-            </div>
-            <p className="text-2xl sm:text-3xl font-extrabold mt-1">{totalBooked}</p>
-          </div>
-
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/10">
-            <div className="flex items-center gap-2 text-amber-300 text-xs font-semibold">
-              <TrendingUp className="w-4 h-4" /> Total Capacity
-            </div>
-            <p className="text-2xl sm:text-3xl font-extrabold mt-1">{totalCapacity}</p>
-          </div>
-
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/10">
-            <div className="flex items-center gap-2 text-purple-300 text-xs font-semibold">
-              <CheckCircle2 className="w-4 h-4" /> Fill Rate
-            </div>
-            <p className="text-2xl sm:text-3xl font-extrabold mt-1">{fillRate}%</p>
-          </div>
-        </div>
-      </div>
 
       {/* Grid: Events Table + Broadcast Tool */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
