@@ -1,0 +1,59 @@
+classDiagram
+    direction TB
+
+    class IEventObserver {
+        <<interface>>
+        +onNotify(topic: String, payload: Object): void
+    }
+
+    class EventBus {
+        <<Subject / Publisher>>
+        -static instance: EventBus
+        -listeners: Map~String, List~Function~~
+        -EventBus()
+        +static getInstance(): EventBus
+        +subscribe(topic: String, callback: Function): Function
+        +publish(topic: String, payload: Object): void
+        +clear(): void
+    }
+
+    class NavbarBadgeObserver {
+        <<Concrete Observer>>
+        -bookingCount: int
+        +onNotify(topic: String, payload: Object): void
+        +updateBadgeCounter(user: UserProfile): void
+    }
+
+    class EventCardQuotaObserver {
+        <<Concrete Observer>>
+        -registeredCount: int
+        -capacity: int
+        +onNotify(topic: String, payload: Object): void
+        +renderProgressBar(): void
+    }
+
+    class AnnouncementBannerObserver {
+        <<Concrete Observer>>
+        -activeAnnouncements: List~Announcement~
+        +onNotify(topic: String, payload: Object): void
+        +displayBannerToast(): void
+    }
+
+    class EventService_Emitter {
+        -bus: EventBus
+        +reserveSpot(eventId: String): void
+        +cancelReservation(id: String): void
+    }
+
+    class AdminDashboard_Emitter {
+        -bus: EventBus
+        +postAnnouncement(title: String, msg: String): void
+    }
+
+    EventBus "1" o-- "*" IEventObserver : "notifies (0..* observers)"
+    IEventObserver <|.. NavbarBadgeObserver : "realizes <<interface>>"
+    IEventObserver <|.. EventCardQuotaObserver : "realizes <<interface>>"
+    IEventObserver <|.. AnnouncementBannerObserver : "realizes <<interface>>"
+
+    EventService_Emitter ..> EventBus : "publishes RSVP_CONFIRMED / CANCELLED"
+    AdminDashboard_Emitter ..> EventBus : "publishes NEW_ANNOUNCEMENT"

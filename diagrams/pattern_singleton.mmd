@@ -1,0 +1,45 @@
+classDiagram
+    direction TB
+
+    class Client_EventService {
+        -dbManager: FirebaseConfigManager
+        +getAllEvents(): List~CampusEvent~
+        +reserveSpot(eventId: String, user: UserProfile): RSVPReservation
+    }
+
+    class Client_AuthService {
+        -authManager: FirebaseConfigManager
+        +loginWithGoogle(): UserProfile
+        +loginAsAdmin(email: String, pass: String): UserProfile
+    }
+
+    class FirebaseConfigManager {
+        <<Singleton>>
+        -static instance: FirebaseConfigManager
+        -auth: FirebaseAuth
+        -db: Firestore
+        -isLiveConfig: boolean
+        -FirebaseConfigManager()
+        +static getInstance() FirebaseConfigManager
+        +static resetInstance(): void
+        +getAuth(): FirebaseAuth
+        +getDb(): Firestore
+        +isLive(): boolean
+    }
+
+    class FirebaseAuth {
+        +currentUser: User
+        +signInWithPopup(): Promise
+        +signOut(): Promise
+    }
+
+    class Firestore {
+        +collection(name: String): CollectionRef
+        +doc(path: String): DocRef
+    }
+
+    Client_EventService ..> FirebaseConfigManager : "calls getInstance()"
+    Client_AuthService ..> FirebaseConfigManager : "calls getInstance()"
+    FirebaseConfigManager "1" *-- "1" FirebaseAuth : "contains / manages"
+    FirebaseConfigManager "1" *-- "1" Firestore : "contains / manages"
+    FirebaseConfigManager o-- "1" FirebaseConfigManager : "static instance"

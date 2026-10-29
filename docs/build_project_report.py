@@ -109,20 +109,23 @@ def build_project_report():
     add_bullet(doc, " Prevents multiple redundant client initializations of the Google Firebase SDK and Firestore database handles. Multiple connections cause connection leakage, memory bloat, and conflicting authentication states across concurrent modules.", "Problem Solved:")
     add_bullet(doc, " Implemented via the `FirebaseConfigManager` class (/src/patterns/FirebaseSingleton.js). A private static instance variable holds the single shared client. Invoking `FirebaseConfigManager.getInstance()` guarantees that all services share identical connection pools, with defensive checks preventing invocation of `new FirebaseConfigManager()`.", "Implementation Details:")
     add_bullet(doc, " Storing database connections in global window-level variables or passing the client down the component tree through prop drilling. Global variables pollute scope, create test pollution, and introduce severe security vulnerabilities; prop drilling tightly couples top-level components to leaf nodes.", "Rejected Alternative:")
+    add_image_if_exists(doc, os.path.join(DIAGRAMS_DIR, "pattern_singleton.png"), "Figure 6: UML Structure of Singleton Pattern (FirebaseConfigManager)", width=Inches(4.6))
 
     add_heading_2(doc, "4.2 Pattern 2: Factory Pattern (Creational Category)")
     add_bullet(doc, " Eliminates tight coupling between client UI forms and concrete campus event implementations. Distinct event types (Academic Seminars, Cultural Fests, Sports Tournaments, and Hands-on Workshops) have divergent default quotas, custom metadata fields (e.g. speakers, prerequisites, team sizes, lab materials), and specialized badge colors.", "Problem Solved:")
     add_bullet(doc, " Implemented through `EventFactory.createEvent(category, data)` (/src/patterns/EventFactory.js). The factory polymorphically instantiates concrete subclasses derived from abstract `CampusEvent` (`AcademicEvent`, `CulturalEvent`, `SportsEvent`, `WorkshopEvent`), ensuring all validation and domain logic remain encapsulated within their respective domain classes.", "Implementation Details:")
     add_bullet(doc, " Scattering massive `switch(category)` statements across every component that displays or validates events. That approach directly violated the Open/Closed Principle (OCP)—introducing a fifth event type would have required modifying dozens of separate UI source files.", "Rejected Alternative:")
+    add_image_if_exists(doc, os.path.join(DIAGRAMS_DIR, "pattern_factory.png"), "Figure 7: UML Structure of Factory Pattern (EventFactory Hierarchy)", width=Inches(4.8))
 
     add_heading_2(doc, "4.3 Pattern 3: Observer Pattern (Behavioral Category)")
     add_bullet(doc, " Decouples notification dispatching from UI receivers. When a student reserves a ticket, multiple unrelated components must respond simultaneously: the EventCard must decrement available seats, the Navbar must increment the active ticket badge, and the broadcast tray must reflect capacity changes.", "Problem Solved:")
     add_bullet(doc, " Realized via a centralized publish-subscribe `EventBus` (/src/patterns/EventBus.js). Components register observer callbacks using `eventBus.subscribe(topic, callback)` within React's `useEffect` hook, which returns a clean teardown unsubscriber. When state changes occur, `eventBus.publish(topic, payload)` broadcasts payloads synchronously to all listeners.", "Implementation Details:")
     add_bullet(doc, " Setting up polling timers with `setInterval()` or lifting shared state up five component hierarchy levels. Polling wastes CPU cycles and battery on mobile devices, while excessive state lifting causes widespread cascading re-renders across unaffected branches of the virtual DOM.", "Rejected Alternative:")
+    add_image_if_exists(doc, os.path.join(DIAGRAMS_DIR, "pattern_observer.png"), "Figure 8: UML Structure of Observer Pattern (EventBus & UI Observers)", width=Inches(4.8))
 
-    add_heading_2(doc, "4.4 UML Class Diagram")
-    add_p(doc, "The comprehensive class diagram in Figure 6 illustrates the relationships, inheritance hierarchies, interfaces, and design pattern integration across the application codebase.")
-    add_image_if_exists(doc, os.path.join(DIAGRAMS_DIR, "class_diagram.png"), "Figure 6: Complete UML Class Diagram Illustrating Singleton, Factory, and Observer Design Patterns", width=Inches(5.6))
+    add_heading_2(doc, "4.4 Comprehensive System UML Class Diagram")
+    add_p(doc, "Figure 9 illustrates the complete object-oriented structure of CampusSync, adhering to the standard RUET CSE Department modeling conventions. Each class is structured into three standard compartments (Name, Attributes with visibility and type, and Methods with parameter types and return values). The diagram explicitly illustrates Generalization (inheritance between CampusEvent and its subclasses), Composition (CampusEvent strongly owns its RSVPReservations), Aggregation (UserProfile owns RSVPReservations), and Dependency (services calling EventFactory and EventBus).")
+    add_image_if_exists(doc, os.path.join(DIAGRAMS_DIR, "class_diagram.png"), "Figure 9: Comprehensive CampusSync UML Class Diagram (With RUET Standard Multiplicities, Compositions, and Aggregations)", width=Inches(5.5))
 
     # 5. Software Testing & Quality Assurance
     add_heading_1(doc, "5. Software Testing & Quality Assurance")
@@ -191,11 +194,11 @@ def build_project_report():
 
     add_heading_2(doc, "7.3 Practical Implementation in CampusSync")
     add_p(doc, "A custom Kanban board was initialized with five automated workflow columns: (1) `Backlog` containing formal user story issues; (2) `Ready / To Do` containing prioritized sprint tasks; (3) `In Progress` tracking active feature branches; (4) `In Review / Testing` holding open pull requests awaiting test verification; and (5) `Done` archiving completed deliverables. Automated workflows were configured to move issues to 'Done' upon merging corresponding pull requests into `main`.")
-    add_p(doc, "Figures 7 through 10 demonstrate the lifecycle progression of CampusSync across four distinct operational sprint stages:")
-    add_image_if_exists(doc, os.path.join(DIAGRAMS_DIR, "gh_project_stage1_planning.png"), "Figure 7: Stage 1 — Sprint Backlog Grooming & Task Prioritization (All Tasks in Backlog / Todo)", width=Inches(5.4))
-    add_image_if_exists(doc, os.path.join(DIAGRAMS_DIR, "gh_project_stage2_in_progress.png"), "Figure 8: Stage 2 — Active Feature Development & In-Progress Module Implementation", width=Inches(5.4))
-    add_image_if_exists(doc, os.path.join(DIAGRAMS_DIR, "gh_project_stage3_testing.png"), "Figure 9: Stage 3 — Testing, Mock Isolation & PR Code Review Phase", width=Inches(5.4))
-    add_image_if_exists(doc, os.path.join(DIAGRAMS_DIR, "gh_project_stage4_done.png"), "Figure 10: Stage 4 — Sprint Completion, Artifact Generation & Release (100% Velocity Completed)", width=Inches(5.4))
+    add_p(doc, "Figures 10 through 13 demonstrate the lifecycle progression of CampusSync across four distinct operational sprint stages:")
+    add_image_if_exists(doc, os.path.join(DIAGRAMS_DIR, "gh_project_stage1_planning.png"), "Figure 10: Stage 1 — Sprint Backlog Grooming & Task Prioritization (All Tasks in Backlog / Todo)", width=Inches(5.4))
+    add_image_if_exists(doc, os.path.join(DIAGRAMS_DIR, "gh_project_stage2_in_progress.png"), "Figure 11: Stage 2 — Active Feature Development & In-Progress Module Implementation", width=Inches(5.4))
+    add_image_if_exists(doc, os.path.join(DIAGRAMS_DIR, "gh_project_stage3_testing.png"), "Figure 12: Stage 3 — Testing, Mock Isolation & PR Code Review Phase", width=Inches(5.4))
+    add_image_if_exists(doc, os.path.join(DIAGRAMS_DIR, "gh_project_stage4_done.png"), "Figure 13: Stage 4 — Sprint Completion, Artifact Generation & Release (100% Velocity Completed)", width=Inches(5.4))
 
     # 8. Academic Integrity & AI Attribution Statement
     add_heading_1(doc, "8. Academic Integrity & AI Attribution Statement")
@@ -302,11 +305,12 @@ def build_html_and_pdf_report():
     }}
     .img-container {{
       text-align: center;
-      margin: 10px 0;
+      margin: 6px 0;
       page-break-inside: avoid;
     }}
     .img-container img {{
-      max-width: 95%;
+      max-width: 92%;
+      max-height: 240px;
       height: auto;
       border: 1px solid #e2e8f0;
       border-radius: 4px;
@@ -466,12 +470,22 @@ def build_html_and_pdf_report():
     <li><strong>Rejected Alternative:</strong> Storing database connections in global window-level variables or passing the client down the component tree through prop drilling. Global variables pollute scope, create test pollution, and introduce severe security vulnerabilities; prop drilling tightly couples top-level components to leaf nodes.</li>
   </ul>
 
+  <div class="img-container">
+    <img src="../diagrams/pattern_singleton.png" alt="Singleton Pattern Diagram" style="max-width: 80%;">
+    <div class="caption">Figure 6: UML Structure of Singleton Pattern (FirebaseConfigManager)</div>
+  </div>
+
   <h2>4.2 Pattern 2: Factory Pattern (Creational Category)</h2>
   <ul>
     <li><strong>Problem Solved:</strong> Eliminates tight coupling between client UI forms and concrete campus event implementations. Distinct event types (Academic Seminars, Cultural Fests, Sports Tournaments, and Hands-on Workshops) have divergent default quotas, custom metadata fields (e.g. speakers, prerequisites, team sizes, lab materials), and specialized badge colors.</li>
     <li><strong>Implementation Details:</strong> Implemented through <code>EventFactory.createEvent(category, data)</code> (<code>/src/patterns/EventFactory.js</code>). The factory polymorphically instantiates concrete subclasses derived from abstract <code>CampusEvent</code> (<code>AcademicEvent</code>, <code>CulturalEvent</code>, <code>SportsEvent</code>, <code>WorkshopEvent</code>), ensuring all validation and domain logic remain encapsulated within their respective domain classes.</li>
     <li><strong>Rejected Alternative:</strong> Scattering massive <code>switch(category)</code> statements across every component that displays or validates events. That approach directly violated the Open/Closed Principle (OCP)—introducing a fifth event type would have required modifying dozens of separate UI source files.</li>
   </ul>
+
+  <div class="img-container">
+    <img src="../diagrams/pattern_factory.png" alt="Factory Pattern Diagram" style="max-width: 85%;">
+    <div class="caption">Figure 7: UML Structure of Factory Pattern (EventFactory Hierarchy)</div>
+  </div>
 
   <h2>4.3 Pattern 3: Observer Pattern (Behavioral Category)</h2>
   <ul>
@@ -480,12 +494,17 @@ def build_html_and_pdf_report():
     <li><strong>Rejected Alternative:</strong> Setting up polling timers with <code>setInterval()</code> or lifting shared state up five component hierarchy levels. Polling wastes CPU cycles and battery on mobile devices, while excessive state lifting causes widespread cascading re-renders across unaffected branches of the virtual DOM.</li>
   </ul>
 
-  <h2>4.4 UML Class Diagram</h2>
-  <p>The comprehensive class diagram in Figure 6 illustrates the relationships, inheritance hierarchies, interfaces, and design pattern integration across the application codebase.</p>
+  <div class="img-container">
+    <img src="../diagrams/pattern_observer.png" alt="Observer Pattern Diagram" style="max-width: 85%;">
+    <div class="caption">Figure 8: UML Structure of Observer Pattern (EventBus &amp; UI Observers)</div>
+  </div>
+
+  <h2>4.4 Comprehensive System UML Class Diagram</h2>
+  <p>Figure 9 illustrates the complete object-oriented structure of CampusSync, adhering to the standard RUET CSE Department modeling conventions. Each class is structured into three standard compartments (Name, Attributes with visibility and type, and Methods with parameter types and return values). The diagram explicitly illustrates Generalization (inheritance between CampusEvent and its subclasses), Composition (CampusEvent strongly owns its RSVPReservations), Aggregation (UserProfile owns RSVPReservations), and Dependency (services calling EventFactory and EventBus).</p>
 
   <div class="img-container">
-    <img src="../diagrams/class_diagram.png" alt="Class Diagram">
-    <div class="caption">Figure 6: Complete UML Class Diagram Illustrating Singleton, Factory, and Observer Design Patterns</div>
+    <img src="../diagrams/class_diagram.png" alt="Class Diagram" style="max-width: 95%;">
+    <div class="caption">Figure 9: Comprehensive CampusSync UML Class Diagram (With RUET Standard Multiplicities, Compositions, and Aggregations)</div>
   </div>
 
   <h1>5. Software Testing & Quality Assurance</h1>
@@ -636,24 +655,24 @@ def build_html_and_pdf_report():
 
   <h2>7.3 Practical Implementation in CampusSync</h2>
   <p>A custom Kanban board was initialized with five automated workflow columns: (1) <code>Backlog</code> containing formal user story issues; (2) <code>Ready / To Do</code> containing prioritized sprint tasks; (3) <code>In Progress</code> tracking active feature branches; (4) <code>In Review / Testing</code> holding open pull requests awaiting test verification; and (5) <code>Done</code> archiving completed deliverables. Automated workflows were configured to move issues to 'Done' upon merging corresponding pull requests into <code>main</code>.</p>
-  <p>Figures 7 through 10 demonstrate the lifecycle progression of CampusSync across four distinct operational sprint stages:</p>
+  <p>Figures 10 through 13 demonstrate the lifecycle progression of CampusSync across four distinct operational sprint stages:</p>
 
   <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 8px 0; page-break-inside: avoid;">
     <div style="text-align: center; border: 1px solid #e2e8f0; border-radius: 4px; padding: 4px; background: #fff;">
       <img src="../diagrams/gh_project_stage1_planning.png" style="width: 100%; height: auto; border-radius: 3px;" alt="Stage 1">
-      <div class="caption">Figure 7: Stage 1 — Sprint Planning (All in Todo)</div>
+      <div class="caption">Figure 10: Stage 1 — Sprint Planning (All in Todo)</div>
     </div>
     <div style="text-align: center; border: 1px solid #e2e8f0; border-radius: 4px; padding: 4px; background: #fff;">
       <img src="../diagrams/gh_project_stage2_in_progress.png" style="width: 100%; height: auto; border-radius: 3px;" alt="Stage 2">
-      <div class="caption">Figure 8: Stage 2 — Active Development (In Progress)</div>
+      <div class="caption">Figure 11: Stage 2 — Active Development (In Progress)</div>
     </div>
     <div style="text-align: center; border: 1px solid #e2e8f0; border-radius: 4px; padding: 4px; background: #fff;">
       <img src="../diagrams/gh_project_stage3_testing.png" style="width: 100%; height: auto; border-radius: 3px;" alt="Stage 3">
-      <div class="caption">Figure 9: Stage 3 — Testing &amp; PR Review</div>
+      <div class="caption">Figure 12: Stage 3 — Testing &amp; PR Review</div>
     </div>
     <div style="text-align: center; border: 1px solid #e2e8f0; border-radius: 4px; padding: 4px; background: #fff;">
       <img src="../diagrams/gh_project_stage4_done.png" style="width: 100%; height: auto; border-radius: 3px;" alt="Stage 4">
-      <div class="caption">Figure 10: Stage 4 — Sprint Complete (100% Done)</div>
+      <div class="caption">Figure 13: Stage 4 — Sprint Complete (100% Done)</div>
     </div>
   </div>
 
