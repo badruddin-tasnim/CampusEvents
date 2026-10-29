@@ -191,6 +191,11 @@ def build_project_report():
 
     add_heading_2(doc, "7.3 Practical Implementation in CampusSync")
     add_p(doc, "A custom Kanban board was initialized with five automated workflow columns: (1) `Backlog` containing formal user story issues; (2) `Ready / To Do` containing prioritized sprint tasks; (3) `In Progress` tracking active feature branches; (4) `In Review / Testing` holding open pull requests awaiting test verification; and (5) `Done` archiving completed deliverables. Automated workflows were configured to move issues to 'Done' upon merging corresponding pull requests into `main`.")
+    add_p(doc, "Figures 7 through 10 demonstrate the lifecycle progression of CampusSync across four distinct operational sprint stages:")
+    add_image_if_exists(doc, os.path.join(DIAGRAMS_DIR, "gh_project_stage1_planning.png"), "Figure 7: Stage 1 — Sprint Backlog Grooming & Task Prioritization (All Tasks in Backlog / Todo)", width=Inches(5.4))
+    add_image_if_exists(doc, os.path.join(DIAGRAMS_DIR, "gh_project_stage2_in_progress.png"), "Figure 8: Stage 2 — Active Feature Development & In-Progress Module Implementation", width=Inches(5.4))
+    add_image_if_exists(doc, os.path.join(DIAGRAMS_DIR, "gh_project_stage3_testing.png"), "Figure 9: Stage 3 — Testing, Mock Isolation & PR Code Review Phase", width=Inches(5.4))
+    add_image_if_exists(doc, os.path.join(DIAGRAMS_DIR, "gh_project_stage4_done.png"), "Figure 10: Stage 4 — Sprint Completion, Artifact Generation & Release (100% Velocity Completed)", width=Inches(5.4))
 
     # 8. Academic Integrity & AI Attribution Statement
     add_heading_1(doc, "8. Academic Integrity & AI Attribution Statement")
@@ -631,6 +636,26 @@ def build_html_and_pdf_report():
 
   <h2>7.3 Practical Implementation in CampusSync</h2>
   <p>A custom Kanban board was initialized with five automated workflow columns: (1) <code>Backlog</code> containing formal user story issues; (2) <code>Ready / To Do</code> containing prioritized sprint tasks; (3) <code>In Progress</code> tracking active feature branches; (4) <code>In Review / Testing</code> holding open pull requests awaiting test verification; and (5) <code>Done</code> archiving completed deliverables. Automated workflows were configured to move issues to 'Done' upon merging corresponding pull requests into <code>main</code>.</p>
+  <p>Figures 7 through 10 demonstrate the lifecycle progression of CampusSync across four distinct operational sprint stages:</p>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 8px 0; page-break-inside: avoid;">
+    <div style="text-align: center; border: 1px solid #e2e8f0; border-radius: 4px; padding: 4px; background: #fff;">
+      <img src="../diagrams/gh_project_stage1_planning.png" style="width: 100%; height: auto; border-radius: 3px;" alt="Stage 1">
+      <div class="caption">Figure 7: Stage 1 — Sprint Planning (All in Todo)</div>
+    </div>
+    <div style="text-align: center; border: 1px solid #e2e8f0; border-radius: 4px; padding: 4px; background: #fff;">
+      <img src="../diagrams/gh_project_stage2_in_progress.png" style="width: 100%; height: auto; border-radius: 3px;" alt="Stage 2">
+      <div class="caption">Figure 8: Stage 2 — Active Development (In Progress)</div>
+    </div>
+    <div style="text-align: center; border: 1px solid #e2e8f0; border-radius: 4px; padding: 4px; background: #fff;">
+      <img src="../diagrams/gh_project_stage3_testing.png" style="width: 100%; height: auto; border-radius: 3px;" alt="Stage 3">
+      <div class="caption">Figure 9: Stage 3 — Testing &amp; PR Review</div>
+    </div>
+    <div style="text-align: center; border: 1px solid #e2e8f0; border-radius: 4px; padding: 4px; background: #fff;">
+      <img src="../diagrams/gh_project_stage4_done.png" style="width: 100%; height: auto; border-radius: 3px;" alt="Stage 4">
+      <div class="caption">Figure 10: Stage 4 — Sprint Complete (100% Done)</div>
+    </div>
+  </div>
 
   <h1>8. Academic Integrity & AI Attribution Statement</h1>
   <p>In strict compliance with RUET academic regulations and the explicit CSE 3206 instruction note: <em>"AI tools or online code may be used only if you can explain every part in the viva, and their use must be stated in the report."</em></p>
